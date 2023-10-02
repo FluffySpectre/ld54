@@ -1,6 +1,7 @@
 class_name Projectile extends CharacterBody2D
 
 @export var move_speed = 300
+@export var damage: float = 10
 @export var visible_notifier: VisibleOnScreenNotifier2D
 @export var impact_scene: PackedScene
 
@@ -18,10 +19,15 @@ func _physics_process(delta):
 
 func check_collisions():
 	if get_slide_collision_count() > 0:
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			var health = collision.get_collider().get_node("Health")
+			if health:
+				health.take_damage(damage)
+
 		destroy_me()
 
 func destroy_me():
-	print("Projectile destroyed!")
 	if impact_scene:
 		var instance = impact_scene.instantiate()
 		instance.global_position = get_parent().global_position

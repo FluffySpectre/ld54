@@ -10,6 +10,7 @@ position = Vector2(-24, -24)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_u1d0f")
+damage = 0.5
 visible_notifier = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

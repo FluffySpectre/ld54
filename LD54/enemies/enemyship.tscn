@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm63ersj8xng1"]
+[gd_scene load_steps=10 format=3 uid="uid://cm63ersj8xng1"]
 
 [ext_resource type="Script" path="res://scripts/Enemyship.gd" id="1_sjtvf"]
 [ext_resource type="Texture2D" uid="uid://cmesd03jtp0ma" path="res://sprites/enemyship.png" id="2_8oga8"]
@@ -6,11 +6,17 @@
 [ext_resource type="Script" path="res://scripts/TargetSelector.gd" id="4_qxbn7"]
 [ext_resource type="Script" path="res://scripts/Shooting.gd" id="5_rhx0q"]
 [ext_resource type="PackedScene" uid="uid://c8qjc451cccjh" path="res://projectiles/laserbolt-enemy.tscn" id="6_lhety"]
+[ext_resource type="Script" path="res://scripts/Health.gd" id="7_odcht"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u772t"]
+radius = 6.52174
 
-[node name="Enemyship" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_cknw8"]
+
+[node name="EnemyShip" type="CharacterBody2D"]
 position = Vector2(-59, -59)
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_sjtvf")
 stopping_distance = 80
 
@@ -35,3 +41,11 @@ script = ExtResource("5_rhx0q")
 projectile_scene = ExtResource("6_lhety")
 parentBody = NodePath("..")
 target_selector = NodePath("../TargetSelector")
+
+[node name="Health" type="Area2D" parent="."]
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("7_odcht")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+shape = SubResource("CircleShape2D_cknw8")

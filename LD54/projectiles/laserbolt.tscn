@@ -7,7 +7,7 @@
 
 [node name="Laserbolt" type="CharacterBody2D" node_paths=PackedStringArray("visible_notifier")]
 position = Vector2(-24, -24)
-collision_layer = 2
+collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_0sir6")
 visible_notifier = NodePath("VisibleOnScreenNotifier2D")

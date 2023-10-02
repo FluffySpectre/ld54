@@ -12,11 +12,11 @@ func _process(delta):
 	# retrieve the closest target from the target selector
 	var closest_target = target_selector.closest_target
 
-	if closest_target:
+	if closest_target != null:
 		var closest_distance = target_selector.closest_distance
 		var closest_direction = target_selector.closest_target_direction
 		var closest_direction_norm = target_selector.closest_target_direction_normalized
-		
+
 		look_at(closest_target.global_position)
 		
 		# if we are not nearby, move towards the target
