@@ -10,6 +10,6 @@ func _ready():
 	parentBody = get_parent() as CharacterBody2D
 	
 func _physics_process(delta):
-	parentBody.velocity += parentBody.transform.y * direction * accel_speed * delta
+	parentBody.velocity += direction * accel_speed * delta
 	parentBody.velocity *= friction_mult
 	parentBody.move_and_slide()

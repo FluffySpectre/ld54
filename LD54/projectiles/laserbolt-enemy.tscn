@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbbe7euu3tloe"]
+[gd_scene load_steps=4 format=3 uid="uid://c8qjc451cccjh"]
 
-[ext_resource type="Script" path="res://scripts/Projectile.gd" id="1_0sir6"]
-[ext_resource type="Texture2D" uid="uid://cpva32q42o064" path="res://sprites/laserbolt.png" id="2_k8w60"]
+[ext_resource type="Script" path="res://scripts/Projectile.gd" id="1_u1d0f"]
+[ext_resource type="Texture2D" uid="uid://bbi5f53ps7ksp" path="res://sprites/enemy-laserbolt.png" id="2_1s5jk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mruc7"]
 
-[node name="Laserbolt" type="CharacterBody2D" node_paths=PackedStringArray("visible_notifier")]
+[node name="LaserboltEnemy" type="CharacterBody2D" node_paths=PackedStringArray("visible_notifier")]
 position = Vector2(-24, -24)
 collision_layer = 2
 collision_mask = 4
-script = ExtResource("1_0sir6")
+script = ExtResource("1_u1d0f")
 visible_notifier = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -18,6 +18,6 @@ shape = SubResource("CircleShape2D_mruc7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
-texture = ExtResource("2_k8w60")
+texture = ExtResource("2_1s5jk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

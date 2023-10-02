@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm63ersj8xng1"]
+
+[ext_resource type="Script" path="res://scripts/Enemyship.gd" id="1_sjtvf"]
+[ext_resource type="Texture2D" uid="uid://cmesd03jtp0ma" path="res://sprites/enemyship.png" id="2_8oga8"]
+[ext_resource type="Script" path="res://scripts/SpaceMovement.gd" id="3_0wub3"]
+[ext_resource type="Script" path="res://scripts/TargetSelector.gd" id="4_qxbn7"]
+[ext_resource type="Script" path="res://scripts/Shooting.gd" id="5_rhx0q"]
+[ext_resource type="PackedScene" uid="uid://c8qjc451cccjh" path="res://projectiles/laserbolt-enemy.tscn" id="6_lhety"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u772t"]
+
+[node name="Enemyship" type="CharacterBody2D"]
+position = Vector2(-59, -59)
+script = ExtResource("1_sjtvf")
+stopping_distance = 80
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7.62939e-06, -1.52588e-05)
+scale = Vector2(0.92, 0.92)
+shape = SubResource("CircleShape2D_u772t")
+
+[node name="Enemyship" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_8oga8")
+
+[node name="SpaceMovement" type="Node" parent="."]
+script = ExtResource("3_0wub3")
+accel_speed = 40.0
+
+[node name="TargetSelector" type="Node" parent="."]
+script = ExtResource("4_qxbn7")
+
+[node name="Shooting" type="Node" parent="." node_paths=PackedStringArray("parentBody", "target_selector")]
+script = ExtResource("5_rhx0q")
+projectile_scene = ExtResource("6_lhety")
+parentBody = NodePath("..")
+target_selector = NodePath("../TargetSelector")

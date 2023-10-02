@@ -1,22 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=11 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Texture2D" uid="uid://bwje8gln3h4bn" path="res://sprites/earth.png" id="1_y2mec"]
+[ext_resource type="Script" path="res://scripts/PlayerMovement.gd" id="3_fi87p"]
 [ext_resource type="Texture2D" uid="uid://c7autclyhcodj" path="res://sprites/spaceship.png" id="3_ou4wy"]
-[ext_resource type="Script" path="res://PlayerMovement.gd" id="3_ww5l8"]
-[ext_resource type="Texture2D" uid="uid://cmesd03jtp0ma" path="res://sprites/enemyship.png" id="5_2j3c4"]
-[ext_resource type="Script" path="res://PlayerShooting.gd" id="5_7mgs3"]
+[ext_resource type="Script" path="res://scripts/PlayerShooting.gd" id="5_sdv1g"]
 [ext_resource type="PackedScene" uid="uid://bbbe7euu3tloe" path="res://projectiles/laserbolt.tscn" id="6_asu0g"]
-[ext_resource type="Texture2D" uid="uid://bbi5f53ps7ksp" path="res://sprites/enemy-laserbolt.png" id="6_imetg"]
-[ext_resource type="Script" path="res://Enemyship.gd" id="8_28m1p"]
-[ext_resource type="Script" path="res://EnemyTarget.gd" id="10_jcf0d"]
-[ext_resource type="Script" path="res://SpaceMovement.gd" id="10_oeemo"]
-[ext_resource type="Script" path="res://scripts/TargetSelector.gd" id="11_fuigg"]
+[ext_resource type="PackedScene" uid="uid://cm63ersj8xng1" path="res://enemies/enemyship.tscn" id="8_1cqiw"]
+[ext_resource type="Script" path="res://scripts/EnemyTarget.gd" id="12_ncgfb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i7lxx"]
 radius = 6.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_u772t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnmaa"]
 size = Vector2(24, 12)
@@ -57,7 +51,7 @@ texture = ExtResource("1_y2mec")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(0, -40)
-script = ExtResource("3_ww5l8")
+script = ExtResource("3_fi87p")
 move_speed = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -68,43 +62,74 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 texture = ExtResource("3_ou4wy")
 
 [node name="PlayerShooting" type="Node" parent="Player" node_paths=PackedStringArray("parentBody")]
-script = ExtResource("5_7mgs3")
+script = ExtResource("5_sdv1g")
 projectile_scene = ExtResource("6_asu0g")
 parentBody = NodePath("..")
 
-[node name="Enemy-laserbolt" type="Sprite2D" parent="."]
-position = Vector2(-35, -125)
-rotation = -1.18857
-texture = ExtResource("6_imetg")
+[node name="Enemyship" parent="." instance=ExtResource("8_1cqiw")]
+position = Vector2(144, -177)
 
-[node name="Enemyship" type="CharacterBody2D" parent="."]
-position = Vector2(-59, -59)
-script = ExtResource("8_28m1p")
-stopping_distance = 40
+[node name="Enemyship2" parent="." instance=ExtResource("8_1cqiw")]
+position = Vector2(-175, -136)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemyship"]
-position = Vector2(-7.62939e-06, -1.52588e-05)
-scale = Vector2(0.92, 0.92)
-shape = SubResource("CircleShape2D_u772t")
+[node name="Enemyship3" parent="." instance=ExtResource("8_1cqiw")]
+position = Vector2(170, 130)
 
-[node name="Enemyship" type="Sprite2D" parent="Enemyship"]
-rotation = 1.5708
-texture = ExtResource("5_2j3c4")
+[node name="Enemyship4" parent="." instance=ExtResource("8_1cqiw")]
+position = Vector2(-134, 169)
 
-[node name="SpaceMovement" type="Node" parent="Enemyship"]
-script = ExtResource("10_oeemo")
-accel_speed = 60.0
+[node name="ShieldGenerators" type="Node2D" parent="."]
 
-[node name="TargetSelector" type="Node" parent="Enemyship"]
-script = ExtResource("11_fuigg")
-
-[node name="Generator" type="RigidBody2D" parent="."]
+[node name="GeneratorNorth" type="RigidBody2D" parent="ShieldGenerators"]
 position = Vector2(0, -107)
+collision_layer = 7
+collision_mask = 7
 freeze = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Generator"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorNorth"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_mnmaa")
 
-[node name="EnemyTarget" type="Node" parent="Generator"]
-script = ExtResource("10_jcf0d")
+[node name="EnemyTarget" type="Node" parent="ShieldGenerators/GeneratorNorth"]
+script = ExtResource("12_ncgfb")
+
+[node name="GeneratorSouth" type="RigidBody2D" parent="ShieldGenerators"]
+position = Vector2(0, 103)
+collision_layer = 7
+collision_mask = 7
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorSouth"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_mnmaa")
+
+[node name="EnemyTarget" type="Node" parent="ShieldGenerators/GeneratorSouth"]
+script = ExtResource("12_ncgfb")
+
+[node name="GeneratorWest" type="RigidBody2D" parent="ShieldGenerators"]
+position = Vector2(-105, 0)
+rotation = 1.5708
+collision_layer = 7
+collision_mask = 7
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorWest"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_mnmaa")
+
+[node name="EnemyTarget" type="Node" parent="ShieldGenerators/GeneratorWest"]
+script = ExtResource("12_ncgfb")
+
+[node name="GeneratorEast" type="RigidBody2D" parent="ShieldGenerators"]
+position = Vector2(107, 0)
+rotation = 1.5708
+collision_layer = 7
+collision_mask = 7
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorEast"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_mnmaa")
+
+[node name="EnemyTarget" type="Node" parent="ShieldGenerators/GeneratorEast"]
+script = ExtResource("12_ncgfb")
