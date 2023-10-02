@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbbe7euu3tloe"]
+
+[ext_resource type="Script" path="res://Projectile.gd" id="1_0sir6"]
+[ext_resource type="Texture2D" uid="uid://cpva32q42o064" path="res://sprites/laserbolt.png" id="2_k8w60"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mruc7"]
+
+[node name="Laserbolt" type="CharacterBody2D" node_paths=PackedStringArray("visible_notifier")]
+position = Vector2(-24, -24)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_0sir6")
+visible_notifier = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.26, 0.26)
+shape = SubResource("CircleShape2D_mruc7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_k8w60")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
