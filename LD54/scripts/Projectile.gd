@@ -18,7 +18,7 @@ func _physics_process(delta):
 	position += transform.x * move_speed * delta
 
 func _on_Projectile_body_entered(body):
-	print("Projectile hit: " + body.name)
+	#print("Projectile hit: " + body.name)
 	#if body.is_in_group("mobs"):
 	#	body.queue_free()
 	var health = body.get_node("Health")

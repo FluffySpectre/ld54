@@ -42,4 +42,4 @@ target_selector = NodePath("../TargetSelector")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("7_odcht")
-max_health = 5.0
+max_health = 1.0

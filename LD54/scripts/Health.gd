@@ -6,9 +6,11 @@ class_name Health extends Node
 var health: float = max_health
 var is_dead = false
 
-func take_damage(damage: float):	
+func take_damage(damage: float):
+	# print(get_parent().name + " took " + str(damage) + " damage (max_health=" + str(max_health) + ")")
+	
 	health -= damage
-	if health < 0:
+	if health <= 0:
 		health = 0
 		if not is_dead:
 			is_dead = true
@@ -22,3 +24,5 @@ func explode():
 		add_child(instance)
 
 	get_parent().queue_free()
+	
+	print(get_parent().name + " destroyed!")
