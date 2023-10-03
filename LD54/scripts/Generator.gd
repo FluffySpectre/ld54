@@ -14,6 +14,8 @@ var player_shooting: PlayerShooting
 @onready var fix_area: Area2D = $FixingArea
 @onready var fix_area_shape: CollisionShape2D = $FixingArea/CollisionShape2D
 @onready var fix_marker: Sprite2D = $FixMarker
+@onready var fix_bar: Sprite2D = $FixBar
+@onready var fix_bar_bar: Sprite2D = $FixBar/Bar
 
 func _ready():
 	fix_area.body_entered.connect(_on_fixarea_body_entered)
@@ -35,10 +37,13 @@ func _process(delta):
 	else:
 		fix_area_shape.disabled = true
 	
+	fix_bar.visible = false
+	
 	if can_be_fixed and health.health < health.max_health:
 		show_fix_marker()
 		
 		if Input.is_action_pressed("shoot"):
+			hide_fix_marker()
 			do_fix(delta)
 	else:
 		hide_fix_marker()
@@ -70,6 +75,10 @@ func do_fix(delta):
 	health.is_dead = false
 	if (health.health > health.max_health):
 		health.health = health.max_health
+		
+	fix_bar.visible = true
+	fix_bar_bar.scale.x = health.health / health.max_health
+	
 	# TODO: some more feedback for the user
 
 func _on_fixarea_body_entered(body: CharacterBody2D):

@@ -130,6 +130,7 @@ collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
 ring_sprite = NodePath("../../ParallaxBackground/MidgroundLayer/Sprite2D_Ring_North")
+fix_speed = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorNorth"]
 shape = SubResource("RectangleShape2D_mnmaa")
@@ -162,6 +163,18 @@ modulate = Color(0.964706, 0.211765, 0.211765, 1)
 position = Vector2(2.08165e-12, 2.08165e-12)
 texture = ExtResource("12_aioo0")
 
+[node name="FixBar" type="Sprite2D" parent="ShieldGenerators/GeneratorNorth"]
+position = Vector2(0, -20)
+scale = Vector2(1, 0.2)
+texture = ExtResource("12_aioo0")
+
+[node name="Bar" type="Sprite2D" parent="ShieldGenerators/GeneratorNorth/FixBar"]
+modulate = Color(0.14902, 0.964706, 0.32549, 1)
+z_index = 1
+position = Vector2(-8, 0)
+texture = ExtResource("12_aioo0")
+offset = Vector2(8, 0)
+
 [node name="GeneratorEast" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(107, 0)
 rotation = 1.5708
@@ -170,6 +183,7 @@ collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
 ring_sprite = NodePath("../../ParallaxBackground/MidgroundLayer/Sprite2D_Ring_East")
+fix_speed = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorEast"]
 position = Vector2(0, 1)
@@ -205,6 +219,19 @@ texture = ExtResource("18_olrd0")
 hframes = 2
 script = ExtResource("18_p8idq")
 
+[node name="FixBar" type="Sprite2D" parent="ShieldGenerators/GeneratorEast"]
+position = Vector2(-1.129, -20)
+rotation = -1.5708
+scale = Vector2(1, 0.2)
+texture = ExtResource("12_aioo0")
+
+[node name="Bar" type="Sprite2D" parent="ShieldGenerators/GeneratorEast/FixBar"]
+modulate = Color(0.14902, 0.964706, 0.32549, 1)
+z_index = 1
+position = Vector2(-8, 1.03142)
+texture = ExtResource("12_aioo0")
+offset = Vector2(8, -1.03142)
+
 [node name="GeneratorSouth" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(0, 103)
 collision_layer = 7
@@ -212,6 +239,7 @@ collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
 ring_sprite = NodePath("../../ParallaxBackground/MidgroundLayer/Sprite2D_Ring_South")
+fix_speed = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorSouth"]
 position = Vector2(0, 1)
@@ -245,6 +273,18 @@ texture = ExtResource("18_olrd0")
 hframes = 2
 script = ExtResource("18_p8idq")
 
+[node name="FixBar" type="Sprite2D" parent="ShieldGenerators/GeneratorSouth"]
+position = Vector2(0, 22)
+scale = Vector2(1, 0.2)
+texture = ExtResource("12_aioo0")
+
+[node name="Bar" type="Sprite2D" parent="ShieldGenerators/GeneratorSouth/FixBar"]
+modulate = Color(0.14902, 0.964706, 0.32549, 1)
+z_index = 1
+position = Vector2(-8, 0)
+texture = ExtResource("12_aioo0")
+offset = Vector2(8, 0)
+
 [node name="GeneratorWest" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(-105, 0)
 rotation = 1.5708
@@ -253,6 +293,7 @@ collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
 ring_sprite = NodePath("../../ParallaxBackground/MidgroundLayer/Sprite2D_Ring_West")
+fix_speed = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorWest"]
 position = Vector2(0, 1)
@@ -287,6 +328,19 @@ rotation = -1.5708
 texture = ExtResource("18_olrd0")
 hframes = 2
 script = ExtResource("18_p8idq")
+
+[node name="FixBar" type="Sprite2D" parent="ShieldGenerators/GeneratorWest"]
+position = Vector2(-0.999924, 21)
+rotation = -1.5708
+scale = Vector2(1, 0.2)
+texture = ExtResource("12_aioo0")
+
+[node name="Bar" type="Sprite2D" parent="ShieldGenerators/GeneratorWest/FixBar"]
+modulate = Color(0.14902, 0.964706, 0.32549, 1)
+z_index = 1
+position = Vector2(-8, 0)
+texture = ExtResource("12_aioo0")
+offset = Vector2(8, 0)
 
 [node name="WaveSpawners" type="Node2D" parent="."]
 
