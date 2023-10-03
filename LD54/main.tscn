@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=15 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qj4ik"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://by0c6ykjehcph" path="res://game/wave_spawner.tscn" id="11_ub5m3"]
 [ext_resource type="Script" path="res://scripts/Health.gd" id="11_wncrr"]
 [ext_resource type="Script" path="res://scripts/EnemyTarget.gd" id="12_ncgfb"]
-[ext_resource type="PackedScene" uid="uid://jun2i51q5epg" path="res://game/wave_spawner_vertical.tscn" id="12_ypj4n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_255gd"]
 radius = 9.62963
@@ -181,7 +180,13 @@ script = ExtResource("11_wncrr")
 [node name="WaveSpawners" type="Node2D" parent="."]
 
 [node name="WaveSpawner1" parent="WaveSpawners" instance=ExtResource("11_ub5m3")]
-position = Vector2(107, -175)
+position = Vector2(205, -201)
 
-[node name="WaveSpawner2" parent="WaveSpawners" instance=ExtResource("12_ypj4n")]
-position = Vector2(177, -117)
+[node name="WaveSpawner2" parent="WaveSpawners" instance=ExtResource("11_ub5m3")]
+position = Vector2(205, 204)
+
+[node name="WaveSpawner3" parent="WaveSpawners" instance=ExtResource("11_ub5m3")]
+position = Vector2(-206, 207)
+
+[node name="WaveSpawner4" parent="WaveSpawners" instance=ExtResource("11_ub5m3")]
+position = Vector2(-209, -208)
