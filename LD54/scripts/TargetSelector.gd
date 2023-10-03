@@ -11,6 +11,16 @@ var closest_target_direction_normalized: Vector2
 func _process(delta):
 	# find the nearest target
 	var targets = get_tree().get_nodes_in_group(target_group)
+	
+	# filter dead targets out of the list
+	targets = targets.filter(
+		func(t):
+			var h = t.get_node("Health") as Health
+			if h != null:
+				return !h.is_dead
+			return true
+	)
+	
 	closest_target = null
 	closest_distance = max_target_distance
 

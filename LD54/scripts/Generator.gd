@@ -7,8 +7,11 @@ class_name Generator extends RigidBody2D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var healthPercent = health.health / health.max_health
-	change_ring_color(healthPercent)
+	if health.health > 0:
+		var healthPercent = health.health / health.max_health
+		change_ring_color(healthPercent)
+	else:
+		ring_sprite.modulate = Color("#333333")
 	
 func change_ring_color(factor: float):
 	var current_color = ring_colors[0].lerp(ring_colors[1], factor)

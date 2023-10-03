@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=20 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qj4ik"]
@@ -15,6 +15,9 @@
 [ext_resource type="Script" path="res://scripts/UIController.gd" id="13_b5jew"]
 [ext_resource type="FontFile" uid="uid://c1it7gg0i1g37" path="res://ui/PixelifySans-VariableFont_wght.ttf" id="13_pciup"]
 [ext_resource type="Script" path="res://scripts/UIFadingCanvasItem.gd" id="14_7myug"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l7r4u"]
+radius = 114.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_255gd"]
 radius = 9.62963
@@ -71,6 +74,14 @@ frame = 2
 texture = ExtResource("1_285if")
 hframes = 2
 
+[node name="RingCollider" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+collision_priority = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RingCollider"]
+shape = SubResource("CircleShape2D_l7r4u")
+
 [node name="Earth" type="StaticBody2D" parent="."]
 scale = Vector2(2.7, 2.7)
 collision_layer = 513
@@ -122,6 +133,8 @@ script = ExtResource("12_ncgfb")
 
 [node name="Health" type="Node" parent="ShieldGenerators/GeneratorNorth"]
 script = ExtResource("11_wncrr")
+max_health = 10.0
+dont_destroy_on_death = true
 
 [node name="GeneratorEast" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(107, 0)
@@ -141,6 +154,7 @@ script = ExtResource("12_ncgfb")
 
 [node name="Health" type="Node" parent="ShieldGenerators/GeneratorEast"]
 script = ExtResource("11_wncrr")
+dont_destroy_on_death = true
 
 [node name="GeneratorSouth" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(0, 103)
@@ -159,6 +173,7 @@ script = ExtResource("12_ncgfb")
 
 [node name="Health" type="Node" parent="ShieldGenerators/GeneratorSouth"]
 script = ExtResource("11_wncrr")
+dont_destroy_on_death = true
 
 [node name="GeneratorWest" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(-105, 0)
@@ -178,6 +193,7 @@ script = ExtResource("12_ncgfb")
 
 [node name="Health" type="Node" parent="ShieldGenerators/GeneratorWest"]
 script = ExtResource("11_wncrr")
+dont_destroy_on_death = true
 
 [node name="WaveSpawners" type="Node2D" parent="."]
 
