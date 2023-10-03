@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=25 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qj4ik"]
@@ -8,13 +8,17 @@
 [ext_resource type="Script" path="res://scripts/PlayerShooting.gd" id="5_sdv1g"]
 [ext_resource type="PackedScene" uid="uid://bbbe7euu3tloe" path="res://projectiles/laserbolt.tscn" id="6_asu0g"]
 [ext_resource type="Script" path="res://scripts/Generator.gd" id="9_ynxr8"]
+[ext_resource type="Script" path="res://FixingArea.gd" id="11_tihfq"]
 [ext_resource type="PackedScene" uid="uid://by0c6ykjehcph" path="res://game/wave_spawner.tscn" id="11_ub5m3"]
 [ext_resource type="Script" path="res://scripts/Health.gd" id="11_wncrr"]
+[ext_resource type="Texture2D" uid="uid://kqxovnytqbtb" path="res://sprites/white.png" id="12_aioo0"]
 [ext_resource type="Script" path="res://scripts/EnemyTarget.gd" id="12_ncgfb"]
 [ext_resource type="PackedScene" uid="uid://bnhfqmcog82xd" path="res://game/wave_spawner_vertical.tscn" id="12_ypj4n"]
 [ext_resource type="Script" path="res://scripts/UIController.gd" id="13_b5jew"]
 [ext_resource type="FontFile" uid="uid://c1it7gg0i1g37" path="res://ui/PixelifySans-VariableFont_wght.ttf" id="13_pciup"]
 [ext_resource type="Script" path="res://scripts/UIFadingCanvasItem.gd" id="14_7myug"]
+[ext_resource type="Texture2D" uid="uid://yupktqtxh1w" path="res://sprites/fix_marker.png" id="18_olrd0"]
+[ext_resource type="Script" path="res://SimpleAnimatedSprite.gd" id="18_p8idq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l7r4u"]
 radius = 114.0
@@ -27,6 +31,8 @@ radius = 10.0499
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnmaa"]
 size = Vector2(6, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uis4n"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qj4ik")
@@ -98,8 +104,8 @@ script = ExtResource("12_ncgfb")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(0, -40)
-collision_layer = 256
-collision_mask = 512
+collision_layer = 2304
+collision_mask = 2560
 script = ExtResource("3_fi87p")
 move_speed = 200.0
 
@@ -133,8 +139,28 @@ script = ExtResource("12_ncgfb")
 
 [node name="Health" type="Node" parent="ShieldGenerators/GeneratorNorth"]
 script = ExtResource("11_wncrr")
-max_health = 10.0
 dont_destroy_on_death = true
+
+[node name="FixMarker" type="Sprite2D" parent="ShieldGenerators/GeneratorNorth"]
+position = Vector2(0, -19)
+texture = ExtResource("18_olrd0")
+hframes = 2
+script = ExtResource("18_p8idq")
+
+[node name="FixingArea" type="Area2D" parent="ShieldGenerators/GeneratorNorth"]
+position = Vector2(0, 15)
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("11_tihfq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorNorth/FixingArea"]
+shape = SubResource("RectangleShape2D_uis4n")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShieldGenerators/GeneratorNorth/FixingArea"]
+visible = false
+modulate = Color(0.964706, 0.211765, 0.211765, 1)
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("12_aioo0")
 
 [node name="GeneratorEast" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(107, 0)
@@ -156,6 +182,29 @@ script = ExtResource("12_ncgfb")
 script = ExtResource("11_wncrr")
 dont_destroy_on_death = true
 
+[node name="FixingArea" type="Area2D" parent="ShieldGenerators/GeneratorEast"]
+modulate = Color(0.803922, 0.137255, 0.137255, 1)
+position = Vector2(5.34058e-05, 15)
+rotation = -1.5708
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("11_tihfq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorEast/FixingArea"]
+shape = SubResource("RectangleShape2D_uis4n")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShieldGenerators/GeneratorEast/FixingArea"]
+visible = false
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("12_aioo0")
+
+[node name="FixMarker" type="Sprite2D" parent="ShieldGenerators/GeneratorEast"]
+position = Vector2(-6.86646e-05, -20)
+rotation = -1.5708
+texture = ExtResource("18_olrd0")
+hframes = 2
+script = ExtResource("18_p8idq")
+
 [node name="GeneratorSouth" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(0, 103)
 collision_layer = 7
@@ -174,6 +223,27 @@ script = ExtResource("12_ncgfb")
 [node name="Health" type="Node" parent="ShieldGenerators/GeneratorSouth"]
 script = ExtResource("11_wncrr")
 dont_destroy_on_death = true
+
+[node name="FixingArea" type="Area2D" parent="ShieldGenerators/GeneratorSouth"]
+modulate = Color(0.803922, 0.137255, 0.137255, 1)
+position = Vector2(0, -13)
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("11_tihfq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorSouth/FixingArea"]
+shape = SubResource("RectangleShape2D_uis4n")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShieldGenerators/GeneratorSouth/FixingArea"]
+visible = false
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("12_aioo0")
+
+[node name="FixMarker" type="Sprite2D" parent="ShieldGenerators/GeneratorSouth"]
+position = Vector2(0, 23)
+texture = ExtResource("18_olrd0")
+hframes = 2
+script = ExtResource("18_p8idq")
 
 [node name="GeneratorWest" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(-105, 0)
@@ -194,6 +264,29 @@ script = ExtResource("12_ncgfb")
 [node name="Health" type="Node" parent="ShieldGenerators/GeneratorWest"]
 script = ExtResource("11_wncrr")
 dont_destroy_on_death = true
+
+[node name="FixingArea" type="Area2D" parent="ShieldGenerators/GeneratorWest"]
+modulate = Color(0.803922, 0.137255, 0.137255, 1)
+position = Vector2(-4.57764e-05, -13)
+rotation = -1.5708
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("11_tihfq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorWest/FixingArea"]
+shape = SubResource("RectangleShape2D_uis4n")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShieldGenerators/GeneratorWest/FixingArea"]
+visible = false
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("12_aioo0")
+
+[node name="FixMarker" type="Sprite2D" parent="ShieldGenerators/GeneratorWest"]
+position = Vector2(7.62939e-05, 21)
+rotation = -1.5708
+texture = ExtResource("18_olrd0")
+hframes = 2
+script = ExtResource("18_p8idq")
 
 [node name="WaveSpawners" type="Node2D" parent="."]
 
