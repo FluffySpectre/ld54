@@ -7,12 +7,14 @@ class_name WaveSpawner extends Area2D
 var spawn_timer = spawn_delay
 var do_spawn = false
 var spawned_in_wave = 0
+var rng = RandomNumberGenerator.new()
 
-@onready var spawn_area = $CollisionShape2D.shape.extents
-@onready var origin = $CollisionShape2D.global_position - spawn_area
+@onready var spawn_area = $CollisionShape2D.shape.get_rect()
 
 func _ready():
 	add_to_group("wave_spawners")
+	print("spawn area: width=" + str(spawn_area.size.x))
+	print("spawn area: height=" + str(spawn_area.size.y))
 
 func _process(delta):
 	if not do_spawn:
@@ -36,13 +38,13 @@ func spawn():
 	var to_spawn = spawn_list[randi() % spawn_list.size()]
 	
 	var instance = to_spawn.instantiate()
-	instance.global_position = global_position
+	instance.global_position = get_random_point_in_spawnarea()
 	instance.global_rotation = global_rotation
 	get_tree().root.add_child(instance)
 	
 	spawned_in_wave += 1
 
 func get_random_point_in_spawnarea():
-	var x = randf_range(origin.x, spawn_area.x)
-	var y = randf_range(origin.y, spawn_area.y)
+	var x = global_position.x + rng.randf_range(0, spawn_area.size.x)
+	var y = global_position.y + rng.randf_range(0, spawn_area.size.y)
 	return Vector2(x, y)

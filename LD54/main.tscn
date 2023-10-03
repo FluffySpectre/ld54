@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=16 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qj4ik"]
@@ -7,11 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://c7autclyhcodj" path="res://sprites/spaceship.png" id="3_ou4wy"]
 [ext_resource type="Script" path="res://scripts/PlayerShooting.gd" id="5_sdv1g"]
 [ext_resource type="PackedScene" uid="uid://bbbe7euu3tloe" path="res://projectiles/laserbolt.tscn" id="6_asu0g"]
-[ext_resource type="PackedScene" uid="uid://cm63ersj8xng1" path="res://enemies/enemyship.tscn" id="8_1cqiw"]
 [ext_resource type="Script" path="res://scripts/Generator.gd" id="9_ynxr8"]
-[ext_resource type="Script" path="res://scripts/WaveSpawner.gd" id="11_nob70"]
+[ext_resource type="PackedScene" uid="uid://by0c6ykjehcph" path="res://game/wave_spawner.tscn" id="11_ub5m3"]
 [ext_resource type="Script" path="res://scripts/Health.gd" id="11_wncrr"]
 [ext_resource type="Script" path="res://scripts/EnemyTarget.gd" id="12_ncgfb"]
+[ext_resource type="PackedScene" uid="uid://jun2i51q5epg" path="res://game/wave_spawner_vertical.tscn" id="12_ypj4n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_255gd"]
 radius = 9.62963
@@ -21,9 +21,6 @@ radius = 10.0499
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnmaa"]
 size = Vector2(6, 4)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vimp"]
-size = Vector2(20, 15.8102)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qj4ik")
@@ -183,98 +180,8 @@ script = ExtResource("11_wncrr")
 
 [node name="WaveSpawners" type="Node2D" parent="."]
 
-[node name="WaveSpawner" type="Area2D" parent="WaveSpawners"]
-position = Vector2(132, -188)
-scale = Vector2(2.7, 2.7)
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("11_nob70")
-spawn_list = Array[PackedScene]([ExtResource("8_1cqiw")])
+[node name="WaveSpawner1" parent="WaveSpawners" instance=ExtResource("11_ub5m3")]
+position = Vector2(107, -175)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaveSpawners/WaveSpawner"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("RectangleShape2D_1vimp")
-
-[node name="WaveSpawner2" type="Area2D" parent="WaveSpawners"]
-position = Vector2(192, -138)
-scale = Vector2(2.7, 2.7)
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("11_nob70")
-spawn_list = Array[PackedScene]([ExtResource("8_1cqiw")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaveSpawners/WaveSpawner2"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("RectangleShape2D_1vimp")
-
-[node name="WaveSpawner3" type="Area2D" parent="WaveSpawners"]
-position = Vector2(194, 138)
-scale = Vector2(2.7, 2.7)
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("11_nob70")
-spawn_list = Array[PackedScene]([ExtResource("8_1cqiw")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaveSpawners/WaveSpawner3"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("RectangleShape2D_1vimp")
-
-[node name="WaveSpawner4" type="Area2D" parent="WaveSpawners"]
-position = Vector2(131, 190)
-scale = Vector2(2.7, 2.7)
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("11_nob70")
-spawn_list = Array[PackedScene]([ExtResource("8_1cqiw")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaveSpawners/WaveSpawner4"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("RectangleShape2D_1vimp")
-
-[node name="WaveSpawner5" type="Area2D" parent="WaveSpawners"]
-position = Vector2(-198, 136)
-scale = Vector2(2.7, 2.7)
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("11_nob70")
-spawn_list = Array[PackedScene]([ExtResource("8_1cqiw")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaveSpawners/WaveSpawner5"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("RectangleShape2D_1vimp")
-
-[node name="WaveSpawner6" type="Area2D" parent="WaveSpawners"]
-position = Vector2(-133, 191)
-scale = Vector2(2.7, 2.7)
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("11_nob70")
-spawn_list = Array[PackedScene]([ExtResource("8_1cqiw")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaveSpawners/WaveSpawner6"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("RectangleShape2D_1vimp")
-
-[node name="WaveSpawner7" type="Area2D" parent="WaveSpawners"]
-position = Vector2(-133, -190)
-scale = Vector2(2.7, 2.7)
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("11_nob70")
-spawn_list = Array[PackedScene]([ExtResource("8_1cqiw")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaveSpawners/WaveSpawner7"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("RectangleShape2D_1vimp")
-
-[node name="WaveSpawner8" type="Area2D" parent="WaveSpawners"]
-position = Vector2(-195, -138)
-scale = Vector2(2.7, 2.7)
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("11_nob70")
-spawn_list = Array[PackedScene]([ExtResource("8_1cqiw")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaveSpawners/WaveSpawner8"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("RectangleShape2D_1vimp")
+[node name="WaveSpawner2" parent="WaveSpawners" instance=ExtResource("12_ypj4n")]
+position = Vector2(177, -117)

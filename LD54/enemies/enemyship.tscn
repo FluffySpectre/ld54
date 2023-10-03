@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cm63ersj8xng1"]
+[gd_scene load_steps=10 format=3 uid="uid://cm63ersj8xng1"]
 
 [ext_resource type="Script" path="res://scripts/Enemyship.gd" id="1_sjtvf"]
 [ext_resource type="Texture2D" uid="uid://cmesd03jtp0ma" path="res://sprites/enemyship.png" id="2_8oga8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/Shooting.gd" id="5_rhx0q"]
 [ext_resource type="PackedScene" uid="uid://c8qjc451cccjh" path="res://projectiles/laserbolt-enemy.tscn" id="6_lhety"]
 [ext_resource type="Script" path="res://scripts/Health.gd" id="7_odcht"]
+[ext_resource type="Script" path="res://scripts/DestroyIfGetsOffscreen.gd" id="8_l85ak"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u772t"]
 radius = 10.8696
@@ -16,7 +17,7 @@ position = Vector2(-59, -59)
 collision_layer = 9
 collision_mask = 9
 script = ExtResource("1_sjtvf")
-stopping_distance = 80
+stopping_distance = 60
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7.62939e-06, -1.52588e-05)
@@ -29,7 +30,7 @@ texture = ExtResource("2_8oga8")
 
 [node name="SpaceMovement" type="Node" parent="."]
 script = ExtResource("3_0wub3")
-accel_speed = 40.0
+accel_speed = 60.0
 
 [node name="TargetSelector" type="Node" parent="."]
 script = ExtResource("4_qxbn7")
@@ -43,3 +44,6 @@ target_selector = NodePath("../TargetSelector")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("7_odcht")
 max_health = 20.0
+
+[node name="DestroyIfGetsOffscreen" type="VisibleOnScreenNotifier2D" parent="."]
+script = ExtResource("8_l85ak")
