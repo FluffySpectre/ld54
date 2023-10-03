@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/WaveSpawner.gd" id="1_mylka"]
 [ext_resource type="PackedScene" uid="uid://cm63ersj8xng1" path="res://enemies/enemyship.tscn" id="2_2v8o4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vd4jk"]
-radius = 54.0093
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmqsv"]
+size = Vector2(480, 20)
 
 [node name="WaveSpawner" type="Area2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -15,4 +15,4 @@ spawn_list = Array[PackedScene]([ExtResource("2_2v8o4")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("CircleShape2D_vd4jk")
+shape = SubResource("RectangleShape2D_lmqsv")

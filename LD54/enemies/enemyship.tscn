@@ -30,7 +30,7 @@ texture = ExtResource("2_8oga8")
 
 [node name="SpaceMovement" type="Node" parent="."]
 script = ExtResource("3_0wub3")
-accel_speed = 60.0
+accel_speed = 80.0
 
 [node name="TargetSelector" type="Node" parent="."]
 script = ExtResource("4_qxbn7")

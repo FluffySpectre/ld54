@@ -9,7 +9,8 @@ var do_spawn = false
 var spawned_in_wave = 0
 var rng = RandomNumberGenerator.new()
 
-@onready var spawn_radius = $CollisionShape2D.shape.radius
+# @onready var spawn_radius = $CollisionShape2D.shape.radius
+@onready var spawn_area = $CollisionShape2D.shape.get_rect()
 
 func _ready():
 	add_to_group("wave_spawners")
@@ -43,6 +44,8 @@ func spawn():
 	spawned_in_wave += 1
 
 func get_random_point_in_spawnarea():
-	var x = global_position.x + rng.randf_range(-spawn_radius, spawn_radius)
-	var y = global_position.y + rng.randf_range(-spawn_radius, spawn_radius)
+	#var x = global_position.x + rng.randf_range(-spawn_radius, spawn_radius)
+	#var y = global_position.y + rng.randf_range(-spawn_radius, spawn_radius)
+	var x = global_position.x + rng.randf_range(0, spawn_area.size.x)
+	var y = global_position.y + rng.randf_range(0, spawn_area.size.y)
 	return Vector2(x, y)

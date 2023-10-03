@@ -31,9 +31,15 @@ func wave_process(delta):
 func start_wave():
 	wave_running = true
 	wave_num += 1
+	
+	var num_enemies = get_wave_enemy_count() / wave_spawners.size()
+	
+	var i = 0
 	for w in wave_spawners:
-		w.num_spawn = get_wave_enemy_count() / wave_spawners.size()
-		w.spawn_wave()
+		if i < wave_num:
+			w.num_spawn = num_enemies
+			w.spawn_wave()
+		i += 1
 
 func end_wave():
 	wave_cooldown_timer = wave_cooldown
