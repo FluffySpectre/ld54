@@ -5,9 +5,6 @@ class_name Enemyship extends CharacterBody2D
 @onready var target_selector: TargetSelector = get_node("TargetSelector")
 @onready var space_movement: SpaceMovement = get_node("SpaceMovement")
 
-func _ready():
-	pass  # Hier kannst du anfängliche Einstellungen vornehmen, z.B. den Waffentyp festlegen.
-
 func _process(delta):
 	# retrieve the closest target from the target selector
 	var closest_target = target_selector.closest_target

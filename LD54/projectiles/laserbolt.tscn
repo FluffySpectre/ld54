@@ -4,11 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://cpva32q42o064" path="res://sprites/laserbolt.png" id="2_k8w60"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mruc7"]
+radius = 38.6534
 
-[node name="Laserbolt" type="CharacterBody2D" node_paths=PackedStringArray("visible_notifier")]
+[node name="Laserbolt" type="Area2D" node_paths=PackedStringArray("visible_notifier")]
 position = Vector2(-24, -24)
 collision_layer = 8
-collision_mask = 4
+collision_mask = 8
 script = ExtResource("1_0sir6")
 visible_notifier = NodePath("VisibleOnScreenNotifier2D")
 

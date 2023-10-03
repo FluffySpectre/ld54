@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=14 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Texture2D" uid="uid://dwk3m1h5t7ltj" path="res://sprites/ring.png" id="2_e4oh0"]
@@ -11,16 +11,14 @@
 [ext_resource type="Script" path="res://scripts/Health.gd" id="11_wncrr"]
 [ext_resource type="Script" path="res://scripts/EnemyTarget.gd" id="12_ncgfb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_t80on"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_255gd"]
+radius = 9.62963
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i7lxx"]
-radius = 6.0
+radius = 10.0499
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnmaa"]
 size = Vector2(6, 4)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbvr7"]
-size = Vector2(25, 12)
 
 [node name="Game" type="Node2D"]
 
@@ -67,14 +65,16 @@ frame = 2
 texture = ExtResource("1_285if")
 hframes = 2
 
-[node name="Earth" type="Node2D" parent="."]
+[node name="Earth" type="StaticBody2D" parent="."]
 scale = Vector2(2.7, 2.7)
+collision_layer = 513
+collision_mask = 257
 
-[node name="Health" type="Area2D" parent="Earth"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Earth"]
+shape = SubResource("CircleShape2D_255gd")
+
+[node name="Health" type="Node" parent="Earth"]
 script = ExtResource("11_wncrr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Earth/Health"]
-shape = SubResource("CircleShape2D_t80on")
 
 [node name="EnemyTarget" type="Node" parent="Earth"]
 script = ExtResource("12_ncgfb")
@@ -83,6 +83,8 @@ script = ExtResource("12_ncgfb")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(0, -40)
+collision_layer = 256
+collision_mask = 512
 script = ExtResource("3_fi87p")
 move_speed = 200.0
 
@@ -132,12 +134,8 @@ shape = SubResource("RectangleShape2D_mnmaa")
 [node name="EnemyTarget" type="Node" parent="ShieldGenerators/GeneratorNorth"]
 script = ExtResource("12_ncgfb")
 
-[node name="Health" type="Area2D" parent="ShieldGenerators/GeneratorNorth"]
+[node name="Health" type="Node" parent="ShieldGenerators/GeneratorNorth"]
 script = ExtResource("11_wncrr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorNorth/Health"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_rbvr7")
 
 [node name="GeneratorEast" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(107, 0)
@@ -155,12 +153,8 @@ shape = SubResource("RectangleShape2D_mnmaa")
 [node name="EnemyTarget" type="Node" parent="ShieldGenerators/GeneratorEast"]
 script = ExtResource("12_ncgfb")
 
-[node name="Health" type="Area2D" parent="ShieldGenerators/GeneratorEast"]
+[node name="Health" type="Node" parent="ShieldGenerators/GeneratorEast"]
 script = ExtResource("11_wncrr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorEast/Health"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_rbvr7")
 
 [node name="GeneratorSouth" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(0, 103)
@@ -177,13 +171,8 @@ shape = SubResource("RectangleShape2D_mnmaa")
 [node name="EnemyTarget" type="Node" parent="ShieldGenerators/GeneratorSouth"]
 script = ExtResource("12_ncgfb")
 
-[node name="Health" type="Area2D" parent="ShieldGenerators/GeneratorSouth"]
-position = Vector2(2.08165e-12, 2.08165e-12)
+[node name="Health" type="Node" parent="ShieldGenerators/GeneratorSouth"]
 script = ExtResource("11_wncrr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorSouth/Health"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_rbvr7")
 
 [node name="GeneratorWest" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
 position = Vector2(-105, 0)
@@ -201,9 +190,5 @@ shape = SubResource("RectangleShape2D_mnmaa")
 [node name="EnemyTarget" type="Node" parent="ShieldGenerators/GeneratorWest"]
 script = ExtResource("12_ncgfb")
 
-[node name="Health" type="Area2D" parent="ShieldGenerators/GeneratorWest"]
+[node name="Health" type="Node" parent="ShieldGenerators/GeneratorWest"]
 script = ExtResource("11_wncrr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorWest/Health"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_rbvr7")
