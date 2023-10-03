@@ -1,5 +1,7 @@
 class_name GameManager extends Node
 
+signal wave_ended(wave_num: int)
+
 @export var wave_cooldown = 5
 
 var wave_num = 0
@@ -44,6 +46,8 @@ func start_wave():
 func end_wave():
 	wave_cooldown_timer = wave_cooldown
 	wave_running = false
+	
+	wave_ended.emit(wave_num)
 
 func get_wave_enemy_count() -> int:
 	return wave_spawners.size() * wave_num

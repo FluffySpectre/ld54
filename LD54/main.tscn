@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=19 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qj4ik"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" path="res://scripts/Health.gd" id="11_wncrr"]
 [ext_resource type="Script" path="res://scripts/EnemyTarget.gd" id="12_ncgfb"]
 [ext_resource type="PackedScene" uid="uid://bnhfqmcog82xd" path="res://game/wave_spawner_vertical.tscn" id="12_ypj4n"]
+[ext_resource type="Script" path="res://scripts/UIController.gd" id="13_b5jew"]
+[ext_resource type="FontFile" uid="uid://c1it7gg0i1g37" path="res://ui/PixelifySans-VariableFont_wght.ttf" id="13_pciup"]
+[ext_resource type="Script" path="res://scripts/UIFadingCanvasItem.gd" id="14_7myug"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_255gd"]
 radius = 9.62963
@@ -81,8 +84,6 @@ script = ExtResource("11_wncrr")
 
 [node name="EnemyTarget" type="Node" parent="Earth"]
 script = ExtResource("12_ncgfb")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(0, -40)
@@ -191,3 +192,30 @@ position = Vector2(257, -1)
 
 [node name="WaveSpawner4" parent="WaveSpawners" instance=ExtResource("12_ypj4n")]
 position = Vector2(-258, 1)
+
+[node name="UICanvas" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+script = ExtResource("13_b5jew")
+
+[node name="WaveLabel" type="Label" parent="UICanvas"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.0
+offset_top = -199.0
+offset_right = -184.0
+offset_bottom = -157.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("13_pciup")
+theme_override_font_sizes/font_size = 32
+text = "Wave 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="UIFadingCanvasItem" type="Node" parent="UICanvas/WaveLabel"]
+script = ExtResource("14_7myug")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="wave_ended" from="." to="UICanvas" method="_on_game_wave_ended"]
