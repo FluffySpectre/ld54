@@ -3,11 +3,11 @@ class_name Health extends Node
 @export var max_health: float = 100.0
 @export var explosion_scene: PackedScene
 
-var health: float = max_health
+@onready var health: float = max_health
 var is_dead = false
 
 func take_damage(damage: float):
-	# print(get_parent().name + " took " + str(damage) + " damage (max_health=" + str(max_health) + ")")
+	#print(get_parent().name + " took " + str(damage) + " damage (max_health=" + str(max_health) + ")")
 	
 	health -= damage
 	if health <= 0:

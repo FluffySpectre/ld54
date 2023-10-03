@@ -1,7 +1,7 @@
 class_name WaveSpawner extends Area2D
 
 @export var spawn_list: Array[PackedScene]
-@export var spawn_delay = 1
+@export var spawn_delay = 3
 @export var num_spawn = 1
 
 var spawn_timer = spawn_delay

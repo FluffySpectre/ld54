@@ -8,7 +8,7 @@ radius = 38.6534
 
 [node name="Laserbolt" type="Area2D" node_paths=PackedStringArray("visible_notifier")]
 position = Vector2(-24, -24)
-collision_layer = 8
+collision_layer = 2048
 collision_mask = 8
 script = ExtResource("1_0sir6")
 visible_notifier = NodePath("VisibleOnScreenNotifier2D")
