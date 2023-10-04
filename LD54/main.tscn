@@ -26,59 +26,44 @@ radius = 114.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_255gd"]
 radius = 9.62963
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i7lxx"]
-radius = 10.0499
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnmaa"]
 size = Vector2(6, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uis4n"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_i7lxx"]
+radius = 10.0499
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qj4ik")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ForegroundLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-z_index = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ForegroundLayer"]
-visible = false
+[node name="StarsBG" type="Sprite2D" parent="."]
 texture = ExtResource("1_285if")
 hframes = 2
 
-[node name="MidgroundLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-z_index = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/MidgroundLayer"]
+[node name="EarthAndStuff" type="Sprite2D" parent="."]
 texture = ExtResource("1_285if")
 hframes = 2
 frame = 1
 
-[node name="Sprite2D_Ring_North" type="Sprite2D" parent="ParallaxBackground/MidgroundLayer"]
+[node name="Sprite2D_Ring_North" type="Sprite2D" parent="."]
 texture = ExtResource("2_e4oh0")
 hframes = 4
 frame = 3
 
-[node name="Sprite2D_Ring_East" type="Sprite2D" parent="ParallaxBackground/MidgroundLayer"]
+[node name="Sprite2D_Ring_East" type="Sprite2D" parent="."]
 texture = ExtResource("2_e4oh0")
 hframes = 4
 
-[node name="Sprite2D_Ring_South" type="Sprite2D" parent="ParallaxBackground/MidgroundLayer"]
+[node name="Sprite2D_Ring_South" type="Sprite2D" parent="."]
 texture = ExtResource("2_e4oh0")
 hframes = 4
 frame = 1
 
-[node name="Sprite2D_Ring_West" type="Sprite2D" parent="ParallaxBackground/MidgroundLayer"]
+[node name="Sprite2D_Ring_West" type="Sprite2D" parent="."]
 texture = ExtResource("2_e4oh0")
 hframes = 4
 frame = 2
-
-[node name="BackgroundLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/BackgroundLayer"]
-texture = ExtResource("1_285if")
-hframes = 2
 
 [node name="RingCollider" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -102,25 +87,6 @@ script = ExtResource("11_wncrr")
 [node name="EnemyTarget" type="Node" parent="Earth"]
 script = ExtResource("12_ncgfb")
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(0, -40)
-collision_layer = 2304
-collision_mask = 2560
-script = ExtResource("3_fi87p")
-move_speed = 200.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("CircleShape2D_i7lxx")
-
-[node name="Spaceship" type="Sprite2D" parent="Player"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-texture = ExtResource("3_ou4wy")
-
-[node name="PlayerShooting" type="Node" parent="Player" node_paths=PackedStringArray("parentBody")]
-script = ExtResource("5_sdv1g")
-projectile_scene = ExtResource("6_asu0g")
-parentBody = NodePath("..")
-
 [node name="ShieldGenerators" type="Node2D" parent="."]
 
 [node name="GeneratorNorth" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
@@ -129,7 +95,7 @@ collision_layer = 7
 collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
-ring_sprite = NodePath("../../ParallaxBackground/MidgroundLayer/Sprite2D_Ring_North")
+ring_sprite = NodePath("../../Sprite2D_Ring_North")
 fix_speed = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorNorth"]
@@ -182,7 +148,7 @@ collision_layer = 7
 collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
-ring_sprite = NodePath("../../ParallaxBackground/MidgroundLayer/Sprite2D_Ring_East")
+ring_sprite = NodePath("../../Sprite2D_Ring_East")
 fix_speed = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorEast"]
@@ -238,7 +204,7 @@ collision_layer = 7
 collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
-ring_sprite = NodePath("../../ParallaxBackground/MidgroundLayer/Sprite2D_Ring_South")
+ring_sprite = NodePath("../../Sprite2D_Ring_South")
 fix_speed = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorSouth"]
@@ -292,7 +258,7 @@ collision_layer = 7
 collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
-ring_sprite = NodePath("../../ParallaxBackground/MidgroundLayer/Sprite2D_Ring_West")
+ring_sprite = NodePath("../../Sprite2D_Ring_West")
 fix_speed = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorWest"]
@@ -355,6 +321,25 @@ position = Vector2(257, -1)
 
 [node name="WaveSpawner4" parent="WaveSpawners" instance=ExtResource("12_ypj4n")]
 position = Vector2(-258, 1)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(0, -40)
+collision_layer = 2304
+collision_mask = 2560
+script = ExtResource("3_fi87p")
+move_speed = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_i7lxx")
+
+[node name="Spaceship" type="Sprite2D" parent="Player"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("3_ou4wy")
+
+[node name="PlayerShooting" type="Node" parent="Player" node_paths=PackedStringArray("parentBody")]
+script = ExtResource("5_sdv1g")
+projectile_scene = ExtResource("6_asu0g")
+parentBody = NodePath("..")
 
 [node name="UICanvas" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
