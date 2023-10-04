@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://c7autclyhcodj" path="res://sprites/spaceship.png" id="3_ou4wy"]
 [ext_resource type="Script" path="res://scripts/PlayerShooting.gd" id="5_sdv1g"]
 [ext_resource type="PackedScene" uid="uid://bbbe7euu3tloe" path="res://projectiles/laserbolt.tscn" id="6_asu0g"]
+[ext_resource type="Script" path="res://scripts/SimpleAnimatedSprite.gd" id="8_y7dsl"]
+[ext_resource type="Script" path="res://scripts/FixingArea.gd" id="9_qeg6g"]
 [ext_resource type="Script" path="res://scripts/Generator.gd" id="9_ynxr8"]
-[ext_resource type="Script" path="res://FixingArea.gd" id="11_tihfq"]
 [ext_resource type="PackedScene" uid="uid://by0c6ykjehcph" path="res://game/wave_spawner.tscn" id="11_ub5m3"]
 [ext_resource type="Script" path="res://scripts/Health.gd" id="11_wncrr"]
 [ext_resource type="Texture2D" uid="uid://kqxovnytqbtb" path="res://sprites/white.png" id="12_aioo0"]
@@ -18,7 +19,6 @@
 [ext_resource type="FontFile" uid="uid://c1it7gg0i1g37" path="res://ui/PixelifySans-VariableFont_wght.ttf" id="13_pciup"]
 [ext_resource type="Script" path="res://scripts/UIFadingCanvasItem.gd" id="14_7myug"]
 [ext_resource type="Texture2D" uid="uid://yupktqtxh1w" path="res://sprites/fix_marker.png" id="18_olrd0"]
-[ext_resource type="Script" path="res://SimpleAnimatedSprite.gd" id="18_p8idq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l7r4u"]
 radius = 114.0
@@ -112,13 +112,13 @@ dont_destroy_on_death = true
 position = Vector2(0, -19)
 texture = ExtResource("18_olrd0")
 hframes = 2
-script = ExtResource("18_p8idq")
+script = ExtResource("8_y7dsl")
 
 [node name="FixingArea" type="Area2D" parent="ShieldGenerators/GeneratorNorth"]
 position = Vector2(0, 15)
 collision_layer = 2048
 collision_mask = 2048
-script = ExtResource("11_tihfq")
+script = ExtResource("9_qeg6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorNorth/FixingArea"]
 shape = SubResource("RectangleShape2D_uis4n")
@@ -168,7 +168,7 @@ position = Vector2(5.34058e-05, 15)
 rotation = -1.5708
 collision_layer = 2048
 collision_mask = 2048
-script = ExtResource("11_tihfq")
+script = ExtResource("9_qeg6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorEast/FixingArea"]
 shape = SubResource("RectangleShape2D_uis4n")
@@ -183,7 +183,7 @@ position = Vector2(-6.86646e-05, -20)
 rotation = -1.5708
 texture = ExtResource("18_olrd0")
 hframes = 2
-script = ExtResource("18_p8idq")
+script = ExtResource("8_y7dsl")
 
 [node name="FixBar" type="Sprite2D" parent="ShieldGenerators/GeneratorEast"]
 position = Vector2(-1.129, -20)
@@ -223,7 +223,7 @@ modulate = Color(0.803922, 0.137255, 0.137255, 1)
 position = Vector2(0, -13)
 collision_layer = 2048
 collision_mask = 2048
-script = ExtResource("11_tihfq")
+script = ExtResource("9_qeg6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorSouth/FixingArea"]
 shape = SubResource("RectangleShape2D_uis4n")
@@ -237,7 +237,7 @@ texture = ExtResource("12_aioo0")
 position = Vector2(0, 23)
 texture = ExtResource("18_olrd0")
 hframes = 2
-script = ExtResource("18_p8idq")
+script = ExtResource("8_y7dsl")
 
 [node name="FixBar" type="Sprite2D" parent="ShieldGenerators/GeneratorSouth"]
 position = Vector2(0, 22)
@@ -278,7 +278,7 @@ position = Vector2(-4.57764e-05, -13)
 rotation = -1.5708
 collision_layer = 2048
 collision_mask = 2048
-script = ExtResource("11_tihfq")
+script = ExtResource("9_qeg6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorWest/FixingArea"]
 shape = SubResource("RectangleShape2D_uis4n")
@@ -293,7 +293,7 @@ position = Vector2(7.62939e-05, 21)
 rotation = -1.5708
 texture = ExtResource("18_olrd0")
 hframes = 2
-script = ExtResource("18_p8idq")
+script = ExtResource("8_y7dsl")
 
 [node name="FixBar" type="Sprite2D" parent="ShieldGenerators/GeneratorWest"]
 position = Vector2(-0.999924, 21)

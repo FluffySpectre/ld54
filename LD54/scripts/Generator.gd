@@ -34,12 +34,11 @@ func _process(delta):
 		ring_sprite.modulate = Color("#333333")
 		
 	# fixing
-	if health.health < health.max_health:
-		fix_area_shape.disabled = false
-	else:
-		fix_area_shape.disabled = true
-	
 	fix_bar.visible = false
+	
+	if can_be_fixed and health.health == health.max_health:
+		fix_bar.visible = true
+		fix_bar_bar.scale.x = health.health / health.max_health
 	
 	if can_be_fixed and health.health < health.max_health:
 		show_fix_marker()
