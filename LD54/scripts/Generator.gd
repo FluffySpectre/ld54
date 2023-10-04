@@ -28,6 +28,8 @@ func _process(delta):
 		change_ring_color(health_percent)
 		if health_percent <= critical_health_percent:
 			flicker_ring(delta)
+		else:
+			ring_alpha = 1.0
 	else:
 		ring_sprite.modulate = Color("#333333")
 		
