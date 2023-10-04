@@ -1,5 +1,7 @@
 class_name Health extends Node
 
+signal died
+
 @export var max_health: float = 100.0
 @export var explosion_scene: PackedScene
 @export var dont_destroy_on_death: bool = false
@@ -16,6 +18,7 @@ func take_damage(damage: float):
 		if not is_dead:
 			is_dead = true
 			explode()
+			died.emit()
 
 func explode():
 	if explosion_scene:

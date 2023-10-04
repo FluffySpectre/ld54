@@ -8,8 +8,20 @@ var wave_num = 0
 var wave_spawners = []
 var wave_running = false
 var wave_cooldown_timer = wave_cooldown
+var game_over = false
+
+@onready var earth: Earth = $Earth
+@onready var game_over_label: Label = $UICanvas/GameOverLabel
+
+func _ready():
+	earth.earth_exploded.connect(on_earth_exploded)
+	
+	game_over_label.visible = false
 
 func _process(delta):
+	if game_over:
+		return
+		
 	wave_process(delta)
 
 func wave_process(delta):
@@ -57,3 +69,7 @@ func is_wave_running():
 		if w.do_spawn:
 			return true
 	return get_tree().get_nodes_in_group("enemies").size() > 0
+
+func on_earth_exploded():
+	game_over = true
+	game_over_label.visible = true
