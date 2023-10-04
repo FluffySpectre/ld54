@@ -8,7 +8,7 @@ var closest_distance: float = max_target_distance
 var closest_target_direction: Vector2
 var closest_target_direction_normalized: Vector2
 	
-func _process(delta):
+func _process(_delta):
 	# find the nearest target
 	var targets = get_tree().get_nodes_in_group(target_group)
 	

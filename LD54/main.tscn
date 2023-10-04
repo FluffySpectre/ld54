@@ -1,12 +1,14 @@
-[gd_scene load_steps=25 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=27 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qj4ik"]
 [ext_resource type="Texture2D" uid="uid://dwk3m1h5t7ltj" path="res://sprites/ring.png" id="2_e4oh0"]
 [ext_resource type="Script" path="res://scripts/PlayerMovement.gd" id="3_fi87p"]
 [ext_resource type="Texture2D" uid="uid://c7autclyhcodj" path="res://sprites/spaceship.png" id="3_ou4wy"]
+[ext_resource type="Script" path="res://scripts/Earth.gd" id="4_mq6xv"]
 [ext_resource type="Script" path="res://scripts/PlayerShooting.gd" id="5_sdv1g"]
 [ext_resource type="PackedScene" uid="uid://bbbe7euu3tloe" path="res://projectiles/laserbolt.tscn" id="6_asu0g"]
+[ext_resource type="Texture2D" uid="uid://bwje8gln3h4bn" path="res://sprites/earth.png" id="6_oyiau"]
 [ext_resource type="Script" path="res://scripts/SimpleAnimatedSprite.gd" id="8_y7dsl"]
 [ext_resource type="Script" path="res://scripts/FixingArea.gd" id="9_qeg6g"]
 [ext_resource type="Script" path="res://scripts/Generator.gd" id="9_ynxr8"]
@@ -74,18 +76,23 @@ collision_priority = 100.0
 shape = SubResource("CircleShape2D_l7r4u")
 
 [node name="Earth" type="StaticBody2D" parent="."]
-scale = Vector2(2.7, 2.7)
 collision_layer = 513
 collision_mask = 257
+script = ExtResource("4_mq6xv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Earth"]
 shape = SubResource("CircleShape2D_255gd")
 
 [node name="Health" type="Node" parent="Earth"]
 script = ExtResource("11_wncrr")
+dont_destroy_on_death = true
 
 [node name="EnemyTarget" type="Node" parent="Earth"]
 script = ExtResource("12_ncgfb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Earth"]
+texture = ExtResource("6_oyiau")
+hframes = 4
 
 [node name="ShieldGenerators" type="Node2D" parent="."]
 

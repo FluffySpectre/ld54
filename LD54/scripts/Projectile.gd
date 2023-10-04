@@ -10,7 +10,7 @@ var target: Vector2
 func _ready():
 	body_entered.connect(_on_Projectile_body_entered)
 
-func _process(delta):
+func _process(_delta):
 	if not visible_notifier.is_on_screen():
 		destroy_me()
 

@@ -2,7 +2,7 @@ class_name SimpleAnimatedSprite extends Sprite2D
 
 @export var fps: float = 2.0
 
-func _process(delta):
+func _process(_delta):
 	update_frame()
 
 func update_frame():

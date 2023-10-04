@@ -22,7 +22,7 @@ func _process(delta):
 				shoot(closest_target.global_position)
 				shoot_timer = shoot_cooldown
 
-func shoot(target_position):
+func shoot(_target_position):
 	var instance = projectile_scene.instantiate()
 	instance.global_position = parentBody.global_position
 	instance.global_rotation = parentBody.global_rotation
