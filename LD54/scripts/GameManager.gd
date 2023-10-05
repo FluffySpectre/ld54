@@ -12,6 +12,7 @@ var game_over = false
 
 @onready var earth: Earth = $Earth
 @onready var game_over_label: Label = $UICanvas/GameOverLabel
+@onready var alien_msg_label: CrypticText = $"alien-help-msg/Label"
 
 func _ready():
 	earth.earth_exploded.connect(on_earth_exploded)
@@ -73,3 +74,7 @@ func is_wave_running():
 func on_earth_exploded():
 	game_over = true
 	game_over_label.visible = true
+	
+	# alien is happy
+	alien_msg_label.original_text = "FREEDOM"
+	alien_msg_label.flash_original_text_probability = 0.25

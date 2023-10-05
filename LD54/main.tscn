@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=35 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qj4ik"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" path="res://scripts/SoundManager.gd" id="23_pfv2f"]
 [ext_resource type="AudioStream" uid="uid://j1ijhxu6gaqg" path="res://sound/shipengine.wav" id="23_xj6bp"]
 [ext_resource type="PackedScene" uid="uid://cbq401crwvovv" path="res://game/earth-explosion-physics.tscn" id="28_2qeec"]
+[ext_resource type="PackedScene" uid="uid://s4c4j5hgf524" path="res://game/alien-help-msg.tscn" id="30_ixd0d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_255gd"]
 radius = 9.62963
@@ -386,7 +387,7 @@ position = Vector2(257, -1)
 position = Vector2(-258, 1)
 
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("flames")]
-position = Vector2(0, -40)
+position = Vector2(0, -62)
 collision_layer = 2305
 collision_mask = 2561
 script = ExtResource("3_fi87p")
@@ -489,5 +490,8 @@ script = ExtResource("22_1ii6e")
 
 [node name="SoundManager" type="Node" parent="."]
 script = ExtResource("23_pfv2f")
+
+[node name="alien-help-msg" parent="." instance=ExtResource("30_ixd0d")]
+position = Vector2(9.53674e-07, -16)
 
 [connection signal="wave_ended" from="." to="UICanvas" method="_on_game_wave_ended"]
