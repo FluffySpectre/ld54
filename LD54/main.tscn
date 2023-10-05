@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=31 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qj4ik"]
@@ -19,11 +19,13 @@
 [ext_resource type="PackedScene" uid="uid://bnhfqmcog82xd" path="res://game/wave_spawner_vertical.tscn" id="12_ypj4n"]
 [ext_resource type="Script" path="res://scripts/UIController.gd" id="13_b5jew"]
 [ext_resource type="FontFile" uid="uid://c1it7gg0i1g37" path="res://ui/PixelifySans-VariableFont_wght.ttf" id="13_pciup"]
+[ext_resource type="Script" path="res://scripts/SoundPlayer.gd" id="13_vjbmw"]
 [ext_resource type="Script" path="res://scripts/UIFadingCanvasItem.gd" id="14_7myug"]
+[ext_resource type="AudioStream" uid="uid://bos86nsnpnpsn" path="res://sound/powerUp-2.wav" id="14_acyah"]
 [ext_resource type="Texture2D" uid="uid://yupktqtxh1w" path="res://sprites/fix_marker.png" id="18_olrd0"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_l7r4u"]
-radius = 114.0
+[ext_resource type="AudioStream" uid="uid://bu5ogyxs7flkb" path="res://sound/laserShoot-2.wav" id="21_yea25"]
+[ext_resource type="Script" path="res://scripts/PauseGame.gd" id="22_1ii6e"]
+[ext_resource type="Script" path="res://scripts/SoundManager.gd" id="23_pfv2f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_255gd"]
 radius = 9.62963
@@ -48,32 +50,62 @@ texture = ExtResource("1_285if")
 hframes = 2
 frame = 1
 
-[node name="Sprite2D_Ring_North" type="Sprite2D" parent="."]
+[node name="ShieldRings" type="Node2D" parent="."]
+
+[node name="RingNorth" type="StaticBody2D" parent="ShieldRings"]
+collision_priority = 100.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldRings/RingNorth"]
+position = Vector2(-83, -93)
+scale = Vector2(7.44095, 4.41061)
+polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.80635, 3.62762, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
+
+[node name="Sprite2D" type="Sprite2D" parent="ShieldRings/RingNorth"]
 texture = ExtResource("2_e4oh0")
 hframes = 4
 frame = 3
 
-[node name="Sprite2D_Ring_East" type="Sprite2D" parent="."]
-texture = ExtResource("2_e4oh0")
-hframes = 4
-
-[node name="Sprite2D_Ring_South" type="Sprite2D" parent="."]
-texture = ExtResource("2_e4oh0")
-hframes = 4
-frame = 1
-
-[node name="Sprite2D_Ring_West" type="Sprite2D" parent="."]
-texture = ExtResource("2_e4oh0")
-hframes = 4
-frame = 2
-
-[node name="RingCollider" type="StaticBody2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+[node name="RingEast" type="StaticBody2D" parent="ShieldRings"]
+rotation = 1.5708
 collision_priority = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RingCollider"]
-shape = SubResource("CircleShape2D_l7r4u")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldRings/RingEast"]
+position = Vector2(-83, -93)
+scale = Vector2(7.44095, 4.41061)
+polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.80635, 3.62762, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
+
+[node name="Sprite2D" type="Sprite2D" parent="ShieldRings/RingEast"]
+texture = ExtResource("2_e4oh0")
+hframes = 4
+frame = 3
+
+[node name="RingSouth" type="StaticBody2D" parent="ShieldRings"]
+rotation = 3.14159
+collision_priority = 100.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldRings/RingSouth"]
+position = Vector2(-83, -93)
+scale = Vector2(7.44095, 4.41061)
+polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.80635, 3.62762, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
+
+[node name="Sprite2D" type="Sprite2D" parent="ShieldRings/RingSouth"]
+texture = ExtResource("2_e4oh0")
+hframes = 4
+frame = 3
+
+[node name="RingWest" type="StaticBody2D" parent="ShieldRings"]
+rotation = 4.71239
+collision_priority = 100.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldRings/RingWest"]
+position = Vector2(-83, -93)
+scale = Vector2(7.44095, 4.41061)
+polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.80635, 3.62762, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
+
+[node name="Sprite2D" type="Sprite2D" parent="ShieldRings/RingWest"]
+texture = ExtResource("2_e4oh0")
+hframes = 4
+frame = 3
 
 [node name="Earth" type="StaticBody2D" parent="."]
 collision_layer = 513
@@ -97,14 +129,15 @@ hframes = 4
 
 [node name="ShieldGenerators" type="Node2D" parent="."]
 
-[node name="GeneratorNorth" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
+[node name="GeneratorNorth" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite", "ring_collider")]
 position = Vector2(0, -107)
 collision_layer = 7
 collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
-ring_sprite = NodePath("../../Sprite2D_Ring_North")
-fix_speed = 4.0
+ring_sprite = NodePath("../../ShieldRings/RingNorth/Sprite2D")
+ring_collider = NodePath("../../ShieldRings/RingNorth/CollisionPolygon2D")
+fix_speed = 8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorNorth"]
 shape = SubResource("RectangleShape2D_mnmaa")
@@ -149,15 +182,20 @@ position = Vector2(-8, 0)
 texture = ExtResource("12_aioo0")
 offset = Vector2(8, 0)
 
-[node name="GeneratorEast" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
+[node name="SoundPlayer" type="Node" parent="ShieldGenerators/GeneratorNorth"]
+script = ExtResource("13_vjbmw")
+sounds = Array[AudioStream]([ExtResource("14_acyah")])
+
+[node name="GeneratorEast" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite", "ring_collider")]
 position = Vector2(107, 0)
 rotation = 1.5708
 collision_layer = 7
 collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
-ring_sprite = NodePath("../../Sprite2D_Ring_East")
-fix_speed = 4.0
+ring_sprite = NodePath("../../ShieldRings/RingEast/Sprite2D")
+ring_collider = NodePath("../../ShieldRings/RingEast/CollisionPolygon2D")
+fix_speed = 8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorEast"]
 position = Vector2(0, 1)
@@ -206,14 +244,19 @@ position = Vector2(-8, 1.03142)
 texture = ExtResource("12_aioo0")
 offset = Vector2(8, -1.03142)
 
-[node name="GeneratorSouth" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
+[node name="SoundPlayer" type="Node" parent="ShieldGenerators/GeneratorEast"]
+script = ExtResource("13_vjbmw")
+sounds = Array[AudioStream]([ExtResource("14_acyah")])
+
+[node name="GeneratorSouth" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite", "ring_collider")]
 position = Vector2(0, 103)
 collision_layer = 7
 collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
-ring_sprite = NodePath("../../Sprite2D_Ring_South")
-fix_speed = 4.0
+ring_sprite = NodePath("../../ShieldRings/RingSouth/Sprite2D")
+ring_collider = NodePath("../../ShieldRings/RingSouth/CollisionPolygon2D")
+fix_speed = 8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorSouth"]
 position = Vector2(0, 1)
@@ -259,15 +302,20 @@ position = Vector2(-8, 0)
 texture = ExtResource("12_aioo0")
 offset = Vector2(8, 0)
 
-[node name="GeneratorWest" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite")]
+[node name="SoundPlayer" type="Node" parent="ShieldGenerators/GeneratorSouth"]
+script = ExtResource("13_vjbmw")
+sounds = Array[AudioStream]([ExtResource("14_acyah")])
+
+[node name="GeneratorWest" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite", "ring_collider")]
 position = Vector2(-105, 0)
 rotation = 1.5708
 collision_layer = 7
 collision_mask = 7
 freeze = true
 script = ExtResource("9_ynxr8")
-ring_sprite = NodePath("../../Sprite2D_Ring_West")
-fix_speed = 4.0
+ring_sprite = NodePath("../../ShieldRings/RingWest/Sprite2D")
+ring_collider = NodePath("../../ShieldRings/RingWest/CollisionPolygon2D")
+fix_speed = 8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldGenerators/GeneratorWest"]
 position = Vector2(0, 1)
@@ -316,6 +364,10 @@ position = Vector2(-8, 0)
 texture = ExtResource("12_aioo0")
 offset = Vector2(8, 0)
 
+[node name="SoundPlayer" type="Node" parent="ShieldGenerators/GeneratorWest"]
+script = ExtResource("13_vjbmw")
+sounds = Array[AudioStream]([ExtResource("14_acyah")])
+
 [node name="WaveSpawners" type="Node2D" parent="."]
 
 [node name="WaveSpawner1" parent="WaveSpawners" instance=ExtResource("11_ub5m3")]
@@ -332,8 +384,8 @@ position = Vector2(-258, 1)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(0, -40)
-collision_layer = 2304
-collision_mask = 2560
+collision_layer = 2305
+collision_mask = 2561
 script = ExtResource("3_fi87p")
 move_speed = 200.0
 
@@ -348,6 +400,12 @@ texture = ExtResource("3_ou4wy")
 script = ExtResource("5_sdv1g")
 projectile_scene = ExtResource("6_asu0g")
 parentBody = NodePath("..")
+
+[node name="SoundPlayer" type="Node" parent="Player"]
+script = ExtResource("13_vjbmw")
+sounds = Array[AudioStream]([ExtResource("21_yea25")])
+min_pitch_offset = -0.25
+max_pitch_offset = -0.25
 
 [node name="UICanvas" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -389,5 +447,11 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PauseGame" type="Node" parent="."]
+script = ExtResource("22_1ii6e")
+
+[node name="SoundManager" type="Node" parent="."]
+script = ExtResource("23_pfv2f")
 
 [connection signal="wave_ended" from="." to="UICanvas" method="_on_game_wave_ended"]

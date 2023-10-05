@@ -7,6 +7,8 @@ class_name PlayerShooting extends Node
 var cooldown_timer = 0.0
 var shooting_disabled = false
 
+@onready var sound_player: SoundPlayer = get_parent().get_node("SoundPlayer")
+
 func _process(delta):
 	if shooting_disabled:
 		return
@@ -19,6 +21,8 @@ func shoot():
 	var instance = projectile_scene.instantiate()
 	instance.global_position = parentBody.global_position
 	instance.global_rotation = parentBody.global_rotation + deg_to_rad(-90)
-
-	add_child(instance)
+	get_tree().root.add_child(instance)
+	
+	sound_player.play_sound()
+	
 	cooldown_timer = cooldown

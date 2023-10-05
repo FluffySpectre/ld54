@@ -26,4 +26,4 @@ func shoot(_target_position):
 	var instance = projectile_scene.instantiate()
 	instance.global_position = parentBody.global_position
 	instance.global_rotation = parentBody.global_rotation
-	add_child(instance)
+	get_tree().root.add_child(instance)

@@ -1,6 +1,7 @@
 class_name Generator extends RigidBody2D
 
 @export var ring_sprite: Sprite2D
+@export var ring_collider: CollisionPolygon2D
 @export var ring_colors = [Color(235.0 / 255.0, 25.0 / 255.0, 25.0 / 255.0), Color(251.0 / 255.0, 242.0 / 255.0, 54.0 / 255.0), Color(153.0 / 255.0, 229.0 / 255.0, 80.0 / 255.0)]
 @export var fix_speed = 2.0
 @export var critical_health_percent = 0.2
@@ -16,6 +17,7 @@ var player_shooting: PlayerShooting
 @onready var fix_marker: Sprite2D = $FixMarker
 @onready var fix_bar: Sprite2D = $FixBar
 @onready var fix_bar_bar: Sprite2D = $FixBar/Bar
+@onready var sound_player: SoundPlayer = $SoundPlayer
 
 func _ready():
 	fix_area.body_entered.connect(_on_fixarea_body_entered)
@@ -30,8 +32,11 @@ func _process(delta):
 			flicker_ring(delta)
 		else:
 			ring_alpha = 1.0
+		
+		ring_collider.disabled = false
 	else:
 		ring_sprite.modulate = Color("#333333")
+		ring_collider.disabled = true
 		
 	# fixing
 	fix_bar.visible = false
@@ -72,10 +77,14 @@ func hide_fix_marker():
 	fix_marker.visible = false
 
 func do_fix(delta):
+	if (health.health == health.max_health):
+		return
+		
 	health.health += fix_speed * delta
 	health.is_dead = false
-	if (health.health > health.max_health):
+	if (health.health >= health.max_health):
 		health.health = health.max_health
+		sound_player.play_sound()
 		
 	fix_bar.visible = true
 	fix_bar_bar.scale.x = health.health / health.max_health
