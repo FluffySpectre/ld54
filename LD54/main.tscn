@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=34 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qj4ik"]
@@ -21,11 +21,13 @@
 [ext_resource type="FontFile" uid="uid://c1it7gg0i1g37" path="res://ui/PixelifySans-VariableFont_wght.ttf" id="13_pciup"]
 [ext_resource type="Script" path="res://scripts/SoundPlayer.gd" id="13_vjbmw"]
 [ext_resource type="Script" path="res://scripts/UIFadingCanvasItem.gd" id="14_7myug"]
-[ext_resource type="AudioStream" uid="uid://bos86nsnpnpsn" path="res://sound/powerUp-2.wav" id="14_acyah"]
+[ext_resource type="AudioStream" uid="uid://c7qqr7ukb60ff" path="res://sound/powerUp-3.wav" id="15_ptbsl"]
 [ext_resource type="Texture2D" uid="uid://yupktqtxh1w" path="res://sprites/fix_marker.png" id="18_olrd0"]
 [ext_resource type="AudioStream" uid="uid://bu5ogyxs7flkb" path="res://sound/laserShoot-2.wav" id="21_yea25"]
 [ext_resource type="Script" path="res://scripts/PauseGame.gd" id="22_1ii6e"]
+[ext_resource type="Script" path="res://scripts/ShipEngineSound.gd" id="23_ef4sl"]
 [ext_resource type="Script" path="res://scripts/SoundManager.gd" id="23_pfv2f"]
+[ext_resource type="AudioStream" uid="uid://j1ijhxu6gaqg" path="res://sound/shipengine.wav" id="23_xj6bp"]
 [ext_resource type="PackedScene" uid="uid://cbq401crwvovv" path="res://game/earth-explosion-physics.tscn" id="28_2qeec"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_255gd"]
@@ -185,7 +187,7 @@ offset = Vector2(8, 0)
 
 [node name="SoundPlayer" type="Node" parent="ShieldGenerators/GeneratorNorth"]
 script = ExtResource("13_vjbmw")
-sounds = Array[AudioStream]([ExtResource("14_acyah")])
+sounds = Array[AudioStream]([ExtResource("15_ptbsl")])
 
 [node name="GeneratorEast" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite", "ring_collider")]
 position = Vector2(107, 0)
@@ -247,7 +249,7 @@ offset = Vector2(8, -1.03142)
 
 [node name="SoundPlayer" type="Node" parent="ShieldGenerators/GeneratorEast"]
 script = ExtResource("13_vjbmw")
-sounds = Array[AudioStream]([ExtResource("14_acyah")])
+sounds = Array[AudioStream]([ExtResource("15_ptbsl")])
 
 [node name="GeneratorSouth" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite", "ring_collider")]
 position = Vector2(0, 103)
@@ -305,7 +307,7 @@ offset = Vector2(8, 0)
 
 [node name="SoundPlayer" type="Node" parent="ShieldGenerators/GeneratorSouth"]
 script = ExtResource("13_vjbmw")
-sounds = Array[AudioStream]([ExtResource("14_acyah")])
+sounds = Array[AudioStream]([ExtResource("15_ptbsl")])
 
 [node name="GeneratorWest" type="RigidBody2D" parent="ShieldGenerators" node_paths=PackedStringArray("ring_sprite", "ring_collider")]
 position = Vector2(-105, 0)
@@ -367,7 +369,7 @@ offset = Vector2(8, 0)
 
 [node name="SoundPlayer" type="Node" parent="ShieldGenerators/GeneratorWest"]
 script = ExtResource("13_vjbmw")
-sounds = Array[AudioStream]([ExtResource("14_acyah")])
+sounds = Array[AudioStream]([ExtResource("15_ptbsl")])
 
 [node name="WaveSpawners" type="Node2D" parent="."]
 
@@ -431,6 +433,15 @@ modulate = Color(0.94902, 0.941176, 0.235294, 1)
 position = Vector2(4, 10)
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("12_aioo0")
+
+[node name="ShipEngineSound" type="Node" parent="Player"]
+script = ExtResource("23_ef4sl")
+sound = ExtResource("23_xj6bp")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player/ShipEngineSound"]
+position = Vector2(0, -40)
+stream = ExtResource("23_xj6bp")
+volume_db = -7.0
 
 [node name="UICanvas" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
