@@ -383,12 +383,14 @@ position = Vector2(257, -1)
 [node name="WaveSpawner4" parent="WaveSpawners" instance=ExtResource("12_ypj4n")]
 position = Vector2(-258, 1)
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("flames")]
 position = Vector2(0, -40)
 collision_layer = 2305
 collision_mask = 2561
 script = ExtResource("3_fi87p")
 move_speed = 200.0
+backward_move_speed = 100.0
+flames = NodePath("Flames")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CircleShape2D_i7lxx")
@@ -407,6 +409,28 @@ script = ExtResource("13_vjbmw")
 sounds = Array[AudioStream]([ExtResource("21_yea25")])
 min_pitch_offset = -0.25
 max_pitch_offset = -0.25
+
+[node name="Flames" type="Node2D" parent="Player"]
+
+[node name="Flame" type="Sprite2D" parent="Player/Flames"]
+modulate = Color(0.94902, 0.941176, 0.235294, 1)
+position = Vector2(0, 10)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("12_aioo0")
+
+[node name="Flame2" type="Sprite2D" parent="Player/Flames"]
+visible = false
+modulate = Color(0.94902, 0.941176, 0.235294, 1)
+position = Vector2(-4, 10)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("12_aioo0")
+
+[node name="Flame3" type="Sprite2D" parent="Player/Flames"]
+visible = false
+modulate = Color(0.94902, 0.941176, 0.235294, 1)
+position = Vector2(4, 10)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("12_aioo0")
 
 [node name="UICanvas" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true

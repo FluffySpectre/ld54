@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbq401crwvovv"]
+[gd_scene load_steps=10 format=3 uid="uid://cbq401crwvovv"]
 
 [ext_resource type="Texture2D" uid="uid://cm6wexfkgewj1" path="res://sprites/lost-enemyship.png" id="1_0slaj"]
 [ext_resource type="Texture2D" uid="uid://d1bha1blbf6nf" path="res://sprites/earth-splitter.png" id="1_suf22"]
 [ext_resource type="Script" path="res://scripts/ApplyImpulse.gd" id="1_vwh4y"]
+[ext_resource type="Texture2D" uid="uid://gu2st7oelrln" path="res://sprites/shine.png" id="2_edv3d"]
+[ext_resource type="Script" path="res://scripts/SimpleAnimatedSprite.gd" id="3_7kn54"]
 [ext_resource type="Script" path="res://scripts/SoundPlayer.gd" id="3_ar0pm"]
 [ext_resource type="AudioStream" uid="uid://b4vu7r8sg067h" path="res://sound/explosion-2.wav" id="4_bdnrc"]
 [ext_resource type="AudioStream" uid="uid://bfkkwem8ea4lv" path="res://sound/explosion-3.wav" id="5_c1n5f"]
@@ -12,6 +14,14 @@
 
 [node name="LostAlien" type="Sprite2D" parent="."]
 texture = ExtResource("1_0slaj")
+
+[node name="Shine" type="Sprite2D" parent="LostAlien"]
+modulate = Color(0.207843, 0.882353, 0.952941, 1)
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_edv3d")
+hframes = 3
+script = ExtResource("3_7kn54")
+fps = 3.0
 
 [node name="EarthPart1" type="RigidBody2D" parent="."]
 collision_layer = 0
