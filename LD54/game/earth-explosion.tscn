@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://cab5lafp417yp"]
+
+[ext_resource type="Script" path="res://scripts/SimpleAnimatedSprite.gd" id="1_nofls"]
+[ext_resource type="Texture2D" uid="uid://cjw45bjx3hb1s" path="res://sprites/earth_explosion.png" id="1_prudb"]
+[ext_resource type="Script" path="res://scripts/SoundPlayer.gd" id="3_df0lc"]
+[ext_resource type="AudioStream" uid="uid://b4vu7r8sg067h" path="res://sound/explosion-2.wav" id="4_ystwd"]
+[ext_resource type="AudioStream" uid="uid://bfkkwem8ea4lv" path="res://sound/explosion-3.wav" id="5_mbvbo"]
+[ext_resource type="AudioStream" uid="uid://bbi2jfel1oixh" path="res://sound/explosion-4.wav" id="6_eg5ax"]
+[ext_resource type="Texture2D" uid="uid://cm6wexfkgewj1" path="res://sprites/lost-enemyship.png" id="7_a64vi"]
+
+[node name="earth-explosion" type="Node2D"]
+
+[node name="LostAlien" type="Sprite2D" parent="."]
+texture = ExtResource("7_a64vi")
+
+[node name="SimpleAnimatedSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_prudb")
+hframes = 6
+script = ExtResource("1_nofls")
+fps = 5.0
+one_shoot = true
+
+[node name="SoundPlayer" type="Node" parent="."]
+script = ExtResource("3_df0lc")
+sounds = Array[AudioStream]([ExtResource("4_ystwd"), ExtResource("5_mbvbo"), ExtResource("6_eg5ax")])
+autoplay = true
+randomize_pitch = true
+
+[node name="SoundPlayer2" type="Node" parent="."]
+script = ExtResource("3_df0lc")
+sounds = Array[AudioStream]([ExtResource("4_ystwd"), ExtResource("5_mbvbo"), ExtResource("6_eg5ax")])
+autoplay = true
+randomize_pitch = true
+delay_before_play = 0.5
+
+[node name="SoundPlayer3" type="Node" parent="."]
+script = ExtResource("3_df0lc")
+sounds = Array[AudioStream]([ExtResource("4_ystwd"), ExtResource("5_mbvbo"), ExtResource("6_eg5ax")])
+autoplay = true
+randomize_pitch = true
+delay_before_play = 0.9

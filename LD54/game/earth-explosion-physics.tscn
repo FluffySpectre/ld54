@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbq401crwvovv"]
+
+[ext_resource type="Texture2D" uid="uid://cm6wexfkgewj1" path="res://sprites/lost-enemyship.png" id="1_0slaj"]
+[ext_resource type="Texture2D" uid="uid://d1bha1blbf6nf" path="res://sprites/earth-splitter.png" id="1_suf22"]
+[ext_resource type="Script" path="res://scripts/ApplyImpulse.gd" id="1_vwh4y"]
+[ext_resource type="Script" path="res://scripts/SoundPlayer.gd" id="3_ar0pm"]
+[ext_resource type="AudioStream" uid="uid://b4vu7r8sg067h" path="res://sound/explosion-2.wav" id="4_bdnrc"]
+[ext_resource type="AudioStream" uid="uid://bfkkwem8ea4lv" path="res://sound/explosion-3.wav" id="5_c1n5f"]
+[ext_resource type="AudioStream" uid="uid://bbi2jfel1oixh" path="res://sound/explosion-4.wav" id="6_3s1a5"]
+
+[node name="earth-explosion-physics" type="Node2D"]
+
+[node name="LostAlien" type="Sprite2D" parent="."]
+texture = ExtResource("1_0slaj")
+
+[node name="EarthPart1" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_vwh4y")
+force_direction = Vector2(60, 60)
+torque_force = 100.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EarthPart1"]
+position = Vector2(0.666938, -0.1875)
+scale = Vector2(3.00282, -3.00243e+11)
+polygon = PackedVector2Array(0.110917, -3.95513e-12, 2.44206, -1.72777e-11, 5.43925, -1.72777e-11, 6.43831, -1.06164e-11, 7.43737, -6.24494e-13, 8.43644, 2.70614e-12, 9.10248, 2.70614e-12, 9.10248, -2.06083e-11, 8.43644, -2.06083e-11, 8.43644, -4.05921e-11, 7.10435, -6.05759e-11, 5.77227, -7.38985e-11, 3.77415, -8.7221e-11, 1.77602, -9.38823e-11, -0.222104, -9.38823e-11, -0.222104, -8.05597e-11, -0.888146, -5.39147e-11, -1.22117, -4.39228e-11, -0.222104, -3.72615e-11, -0.222104, -2.72696e-11, -0.222104, -7.28577e-12)
+
+[node name="Sprite2D" type="Sprite2D" parent="EarthPart1"]
+texture = ExtResource("1_suf22")
+hframes = 4
+
+[node name="EarthPart2" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_vwh4y")
+force_direction = Vector2(-60, 60)
+torque_force = -120.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EarthPart2"]
+polygon = PackedVector2Array(-2, 4, -2, 8, -6, 11, -6, 17, -4, 21, -3, 26, -2, 28, -6, 28, -6, 26, -12, 26, -26, 12, -28, 5, -22, 5, -12, 3, -9, 0, -5, 1, -3, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="EarthPart2"]
+texture = ExtResource("1_suf22")
+hframes = 4
+frame = 1
+
+[node name="EarthPart3" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_vwh4y")
+force_direction = Vector2(60, -60)
+torque_force = 100.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EarthPart3"]
+polygon = PackedVector2Array(0, -1, -3, -1, -1, -3, 6, -7, 8, -12, 8, -23, 3, -28, 6, -28, 12, -26, 22, -18, 26, -12, 28, -6, 28, -4, 21, -2, 18, 1, 15, 3, 10, 3, 4, -1)
+
+[node name="Sprite2D" type="Sprite2D" parent="EarthPart3"]
+position = Vector2(0, 1)
+texture = ExtResource("1_suf22")
+hframes = 4
+frame = 2
+
+[node name="EarthPart4" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 2.66454e-15
+constant_force = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("1_vwh4y")
+force_direction = Vector2(-60, -60)
+torque_force = -150.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EarthPart4"]
+polygon = PackedVector2Array(-5, -2, -11, -2, -17, 1, -28, 3, -28, -6, -26, -12, -22, -18, -12, -26, -6, -28, -1, -28, 1, -25, 6, -21, 6, -15, 4, -13, 2, -9, -3, -7, -5, -5)
+
+[node name="Sprite2D" type="Sprite2D" parent="EarthPart4"]
+texture = ExtResource("1_suf22")
+hframes = 4
+frame = 3
+
+[node name="SoundPlayer1" type="Node" parent="."]
+script = ExtResource("3_ar0pm")
+sounds = Array[AudioStream]([ExtResource("4_bdnrc"), ExtResource("5_c1n5f"), ExtResource("6_3s1a5")])
+autoplay = true
+randomize_pitch = true
+
+[node name="SoundPlayer2" type="Node" parent="."]
+script = ExtResource("3_ar0pm")
+sounds = Array[AudioStream]([ExtResource("4_bdnrc"), ExtResource("5_c1n5f"), ExtResource("6_3s1a5")])
+autoplay = true
+randomize_pitch = true
+delay_before_play = 0.5
+
+[node name="SoundPlayer3" type="Node" parent="."]
+script = ExtResource("3_ar0pm")
+sounds = Array[AudioStream]([ExtResource("4_bdnrc"), ExtResource("5_c1n5f"), ExtResource("6_3s1a5")])
+autoplay = true
+randomize_pitch = true
+delay_before_play = 1.0

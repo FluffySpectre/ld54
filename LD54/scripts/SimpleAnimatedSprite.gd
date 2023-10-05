@@ -4,15 +4,16 @@ class_name SimpleAnimatedSprite extends Sprite2D
 @export var one_shoot = false
 @export var one_shot_destroy_after = false
 
-func _process(_delta):
+var frame_timer = 0.0
+
+func _ready():
+	frame = 0
+
+func _process(delta):
 	if one_shoot and frame == hframes - 1:
 		if one_shot_destroy_after:
 			get_parent().queue_free()
 		return
 	
-	update_frame()
-
-func update_frame():
-	var millis = Time.get_ticks_msec()
-	var sec = millis / 1000.0
-	frame = (int(sec * fps)) % hframes
+	frame_timer += delta
+	frame = (int(frame_timer * fps)) % hframes

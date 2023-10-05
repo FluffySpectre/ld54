@@ -13,7 +13,7 @@
 position = Vector2(-0.98, -0.5)
 rotation = 1.5708
 texture = ExtResource("1_0dln8")
-hframes = 5
+hframes = 3
 script = ExtResource("1_balr3")
 fps = 5.0
 one_shoot = true

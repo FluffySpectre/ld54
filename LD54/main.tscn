@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=32 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qj4ik"]
@@ -26,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://bu5ogyxs7flkb" path="res://sound/laserShoot-2.wav" id="21_yea25"]
 [ext_resource type="Script" path="res://scripts/PauseGame.gd" id="22_1ii6e"]
 [ext_resource type="Script" path="res://scripts/SoundManager.gd" id="23_pfv2f"]
+[ext_resource type="PackedScene" uid="uid://cbq401crwvovv" path="res://game/earth-explosion-physics.tscn" id="28_2qeec"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_255gd"]
 radius = 9.62963
@@ -58,7 +59,7 @@ collision_priority = 100.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldRings/RingNorth"]
 position = Vector2(-83, -93)
 scale = Vector2(7.44095, 4.41061)
-polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.80635, 3.62762, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
+polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.671957, 3.40089, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
 
 [node name="Sprite2D" type="Sprite2D" parent="ShieldRings/RingNorth"]
 texture = ExtResource("2_e4oh0")
@@ -72,7 +73,7 @@ collision_priority = 100.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldRings/RingEast"]
 position = Vector2(-83, -93)
 scale = Vector2(7.44095, 4.41061)
-polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.80635, 3.62762, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
+polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.671919, 3.40095, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
 
 [node name="Sprite2D" type="Sprite2D" parent="ShieldRings/RingEast"]
 texture = ExtResource("2_e4oh0")
@@ -86,7 +87,7 @@ collision_priority = 100.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldRings/RingSouth"]
 position = Vector2(-83, -93)
 scale = Vector2(7.44095, 4.41061)
-polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.80635, 3.62762, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
+polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.671984, 3.40084, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
 
 [node name="Sprite2D" type="Sprite2D" parent="ShieldRings/RingSouth"]
 texture = ExtResource("2_e4oh0")
@@ -100,7 +101,7 @@ collision_priority = 100.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldRings/RingWest"]
 position = Vector2(-83, -93)
 scale = Vector2(7.44095, 4.41061)
-polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.80635, 3.62762, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
+polygon = PackedVector2Array(8.06349, -3.40089, 4.97249, -1.58708, 2.55344, 0.906906, 0.671947, 3.40091, 0.268784, 2.72071, 2.15026, 0, 3.76296, -1.58708, 5.64444, -3.17417, 7.79471, -4.3078, 9.40741, -4.98797, 13.3048, -4.76125, 15.455, -4.08107, 17.3365, -2.94744, 18.8148, -1.36036, 20.4275, 0.226727, 22.1746, 2.94744, 21.5026, 3.17417, 19.218, 0, 17.4709, -1.58708, 14.1111, -3.40089)
 
 [node name="Sprite2D" type="Sprite2D" parent="ShieldRings/RingWest"]
 texture = ExtResource("2_e4oh0")
@@ -118,7 +119,7 @@ shape = SubResource("CircleShape2D_255gd")
 
 [node name="Health" type="Node" parent="Earth"]
 script = ExtResource("11_wncrr")
-dont_destroy_on_death = true
+explosion_scene = ExtResource("28_2qeec")
 
 [node name="EnemyTarget" type="Node" parent="Earth"]
 script = ExtResource("12_ncgfb")
