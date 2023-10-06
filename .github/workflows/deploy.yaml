@@ -22,7 +22,7 @@ jobs:
         with:
           godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_linux.x86_64.zip
           godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_export_templates.tpz
-          relative_project_path: ./
+          relative_project_path: ./LD54/
           archive_output: true
           use_preset_export_path: true
           export_debug: false
@@ -31,7 +31,7 @@ jobs:
         uses: KikimoraGames/itch-publish@v0.0.3
         with:
           butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
-          gameData: ./bin/web/web.zip
+          gameData: ./LD54/bin/web/web.zip
           itchUsername: ${{ secrets.ITCH_USER }}
           itchGameId: orbit-nonsense
           buildChannel: html5
@@ -42,7 +42,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: "./bin/win/"
+          local-dir: "./LD54/bin/win/"
           server-dir: "/games/ld54/win/"
 
       - name: Upload mac build to sennio.de
@@ -51,5 +51,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: "./bin/mac/"
+          local-dir: "./LD54/bin/mac/"
           server-dir: "/games/ld54/mac/"
