@@ -24,7 +24,8 @@ func _process(delta):
 			text = cryptic_text
 			temp_change_speed = change_speed
 		else:
-			text = original_text
+			cryptic_text = original_text
+			text = cryptic_text
 			temp_change_speed = 0.5
 		crypt_char_timer = 0.0
 	

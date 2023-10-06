@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=36 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="1_285if"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qj4ik"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/SimpleAnimatedSprite.gd" id="8_y7dsl"]
 [ext_resource type="Script" path="res://scripts/FixingArea.gd" id="9_qeg6g"]
 [ext_resource type="Script" path="res://scripts/Generator.gd" id="9_ynxr8"]
+[ext_resource type="PackedScene" uid="uid://da5gsqau6hg4x" path="res://game/shield-generator-offline-fx.tscn" id="10_8w0ts"]
 [ext_resource type="PackedScene" uid="uid://by0c6ykjehcph" path="res://game/wave_spawner.tscn" id="11_ub5m3"]
 [ext_resource type="Script" path="res://scripts/Health.gd" id="11_wncrr"]
 [ext_resource type="Texture2D" uid="uid://kqxovnytqbtb" path="res://sprites/white.png" id="12_aioo0"]
@@ -151,6 +152,7 @@ script = ExtResource("12_ncgfb")
 
 [node name="Health" type="Node" parent="ShieldGenerators/GeneratorNorth"]
 script = ExtResource("11_wncrr")
+explosion_scene = ExtResource("10_8w0ts")
 dont_destroy_on_death = true
 
 [node name="FixMarker" type="Sprite2D" parent="ShieldGenerators/GeneratorNorth"]
@@ -210,6 +212,7 @@ script = ExtResource("12_ncgfb")
 
 [node name="Health" type="Node" parent="ShieldGenerators/GeneratorEast"]
 script = ExtResource("11_wncrr")
+explosion_scene = ExtResource("10_8w0ts")
 dont_destroy_on_death = true
 
 [node name="FixingArea" type="Area2D" parent="ShieldGenerators/GeneratorEast"]
@@ -271,6 +274,7 @@ script = ExtResource("12_ncgfb")
 
 [node name="Health" type="Node" parent="ShieldGenerators/GeneratorSouth"]
 script = ExtResource("11_wncrr")
+explosion_scene = ExtResource("10_8w0ts")
 dont_destroy_on_death = true
 
 [node name="FixingArea" type="Area2D" parent="ShieldGenerators/GeneratorSouth"]
@@ -330,6 +334,7 @@ script = ExtResource("12_ncgfb")
 
 [node name="Health" type="Node" parent="ShieldGenerators/GeneratorWest"]
 script = ExtResource("11_wncrr")
+explosion_scene = ExtResource("10_8w0ts")
 dont_destroy_on_death = true
 
 [node name="FixingArea" type="Area2D" parent="ShieldGenerators/GeneratorWest"]
