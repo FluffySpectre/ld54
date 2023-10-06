@@ -4,7 +4,7 @@ class_name CrypticText extends Label
 @export var change_speed = 0.25
 @export var flash_original_text_probability = 0.01
 
-var cryptic_characters = "ψχφρξΣΩΦλܧ"
+var cryptic_characters = "Σ#Æ&λ?Ø$∞¢@%"
 var cryptic_text = ""
 var crypt_char_timer = 0.0
 var temp_change_speed = 0.0
@@ -29,6 +29,7 @@ func _process(delta):
 		crypt_char_timer = 0.0
 	
 func calculate_cryptic_text():
+	cryptic_text = ""
 	for c in original_text:
 		cryptic_text += cryptic_characters[randi() % cryptic_characters.length()]
 		

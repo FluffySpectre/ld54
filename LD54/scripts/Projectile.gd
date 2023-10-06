@@ -29,8 +29,8 @@ func _on_Projectile_body_entered(body):
 func destroy_me():
 	if impact_fx:
 		var instance = impact_fx.instantiate()
-		instance.global_position = get_parent().global_position
-		instance.global_rotation = get_parent().global_rotation
+		instance.global_position = global_position
+		instance.global_rotation = global_rotation
 		get_tree().root.add_child(instance)
 
 	queue_free()

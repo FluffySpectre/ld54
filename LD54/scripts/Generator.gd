@@ -18,6 +18,7 @@ var player_shooting: PlayerShooting
 @onready var fix_bar: Sprite2D = $FixBar
 @onready var fix_bar_bar: Sprite2D = $FixBar/Bar
 @onready var sound_player: SoundPlayer = $SoundPlayer
+@onready var generator_collider: CollisionShape2D = $CollisionShape2D
 
 func _ready():
 	fix_area.body_entered.connect(_on_fixarea_body_entered)
@@ -34,9 +35,11 @@ func _process(delta):
 			ring_alpha = 1.0
 		
 		ring_collider.disabled = false
+		generator_collider.disabled = false
 	else:
 		ring_sprite.modulate = Color("#333333")
 		ring_collider.disabled = true
+		generator_collider.disabled = true
 		
 	# fixing
 	fix_bar.visible = false
@@ -82,6 +85,7 @@ func do_fix(delta):
 		
 	health.health += fix_speed * delta
 	health.is_dead = false
+	
 	if (health.health >= health.max_health):
 		health.health = health.max_health
 		sound_player.play_sound()

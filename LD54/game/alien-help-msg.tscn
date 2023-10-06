@@ -23,4 +23,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_pj3ac")
 original_text = "Help!"
-change_speed = 0.05
+change_speed = 0.1

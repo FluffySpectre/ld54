@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bld3j7dxw74ck"]
+[gd_scene load_steps=6 format=3 uid="uid://bld3j7dxw74ck"]
 
 [ext_resource type="Texture2D" uid="uid://1v48a57sojqq" path="res://sprites/enemyship-explosion.png" id="1_0dln8"]
 [ext_resource type="Script" path="res://scripts/SimpleAnimatedSprite.gd" id="1_balr3"]
 [ext_resource type="Script" path="res://scripts/SoundPlayer.gd" id="3_ngwq6"]
 [ext_resource type="AudioStream" uid="uid://b4vu7r8sg067h" path="res://sound/explosion-2.wav" id="4_ls6rq"]
 [ext_resource type="AudioStream" uid="uid://bfkkwem8ea4lv" path="res://sound/explosion-3.wav" id="5_us5qu"]
-[ext_resource type="AudioStream" uid="uid://bbi2jfel1oixh" path="res://sound/explosion-4.wav" id="6_vslyb"]
 
 [node name="enemyship-explosion" type="Node2D"]
 
@@ -15,13 +14,13 @@ rotation = 1.5708
 texture = ExtResource("1_0dln8")
 hframes = 3
 script = ExtResource("1_balr3")
-fps = 5.0
+fps = 10.0
 one_shoot = true
 one_shot_destroy_after = true
 
 [node name="SoundPlayer" type="Node" parent="."]
 script = ExtResource("3_ngwq6")
-sounds = Array[AudioStream]([ExtResource("4_ls6rq"), ExtResource("5_us5qu"), ExtResource("6_vslyb")])
+sounds = Array[AudioStream]([ExtResource("4_ls6rq"), ExtResource("5_us5qu")])
 autoplay = true
 randomize_pitch = true
 min_pitch_offset = -0.5
