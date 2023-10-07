@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dqmtu24846ayw"]
+[gd_scene load_steps=38 format=3 uid="uid://dqmtu24846ayw"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_jk03w"]
 [ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="2_eqxd6"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" path="res://scripts/UIController.gd" id="26_bi1hl"]
 [ext_resource type="Script" path="res://scripts/UIFadingCanvasItem.gd" id="28_f2suu"]
 [ext_resource type="Script" path="res://scripts/switch_scene.gd" id="29_re2pb"]
+[ext_resource type="Script" path="res://FadeIn.gd" id="29_ssg7k"]
 [ext_resource type="Theme" uid="uid://b3p4rdybxkytw" path="res://ui/ui_theme.tres" id="29_vcvtv"]
 [ext_resource type="Script" path="res://scripts/SoundManager.gd" id="30_ipgm0"]
 [ext_resource type="PackedScene" uid="uid://s4c4j5hgf524" path="res://game/alien-help-msg.tscn" id="31_fu5wc"]
@@ -475,6 +476,8 @@ script = ExtResource("28_f2suu")
 
 [node name="GameOver" type="Node2D" parent="UICanvas"]
 position = Vector2(0, -160)
+script = ExtResource("29_ssg7k")
+fade_in_speed = 1.25
 
 [node name="ResetButton" type="Button" parent="UICanvas/GameOver"]
 offset_left = -134.0
@@ -511,6 +514,7 @@ script = ExtResource("30_ipgm0")
 position = Vector2(9.53674e-07, -16)
 
 [node name="PauseGame" parent="." instance=ExtResource("32_d6wb4")]
+z_index = 10
 position = Vector2(-100, -60)
 
 [connection signal="wave_ended" from="." to="UICanvas" method="_on_game_wave_ended"]
