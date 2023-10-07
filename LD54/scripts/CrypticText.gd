@@ -37,8 +37,12 @@ func _process(delta):
 func calculate_cryptic_text():
 	cryptic_text = ""
 	for c in original_text:
-		cryptic_text += cryptic_characters[randi() % cryptic_characters.length()]
+		if c != " ":
+			cryptic_text += cryptic_characters[randi() % cryptic_characters.length()]
+		else:
+			cryptic_text += " "
 		
 func calculate_random_character():
 	var random_character_index = randi() % cryptic_text.length()
-	cryptic_text[random_character_index] = cryptic_characters[randi() % cryptic_characters.length()]
+	if cryptic_text[random_character_index] != " ":
+		cryptic_text[random_character_index] = cryptic_characters[randi() % cryptic_characters.length()]
