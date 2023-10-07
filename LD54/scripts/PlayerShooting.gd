@@ -21,7 +21,7 @@ func shoot():
 	var instance = projectile_scene.instantiate()
 	instance.global_position = parentBody.global_position
 	instance.global_rotation = parentBody.global_rotation + deg_to_rad(-90)
-	get_tree().root.add_child(instance)
+	Main.instance.get_scene_root().add_child(instance)
 	
 	sound_player.play_sound()
 	

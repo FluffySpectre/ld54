@@ -39,7 +39,7 @@ func spawn():
 	var instance = to_spawn.instantiate()
 	instance.global_position = get_random_point_in_spawnarea()
 	instance.global_rotation = global_rotation
-	get_tree().root.add_child(instance)
+	Main.instance.get_scene_root().add_child(instance)
 	
 	spawned_in_wave += 1
 

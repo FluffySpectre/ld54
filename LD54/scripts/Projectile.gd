@@ -31,6 +31,6 @@ func destroy_me():
 		var instance = impact_fx.instantiate()
 		instance.global_position = global_position
 		instance.global_rotation = global_rotation
-		get_tree().root.add_child(instance)
+		Main.instance.get_scene_root().add_child(instance)
 
 	queue_free()

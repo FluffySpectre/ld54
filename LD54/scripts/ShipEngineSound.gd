@@ -4,7 +4,7 @@ class_name ShipEngineSound extends Node
 
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("up"):
 		if not audio_stream_player.playing:
 			audio_stream_player.play()

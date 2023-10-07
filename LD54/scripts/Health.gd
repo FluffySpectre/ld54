@@ -30,7 +30,7 @@ func explode():
 		var instance = explosion_scene.instantiate()
 		instance.global_position = get_parent().global_position
 		instance.global_rotation = get_parent().global_rotation
-		get_tree().root.add_child(instance)
+		Main.instance.get_scene_root().add_child(instance)
 	
 	if not dont_destroy_on_death:
 		get_parent().queue_free()

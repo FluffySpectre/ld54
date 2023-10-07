@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://jfemihtye8bq"]
+
+[ext_resource type="Script" path="res://scripts/switch_scene.gd" id="1_deky7"]
+[ext_resource type="Theme" uid="uid://b3p4rdybxkytw" path="res://ui/ui_theme.tres" id="1_f0e1a"]
+[ext_resource type="Texture2D" uid="uid://c3pmdowk6w6jd" path="res://sprites/game-view.png" id="2_dufmy"]
+[ext_resource type="Script" path="res://scripts/CrypticText.gd" id="3_pfuv6"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_deky7")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(240, 240)
+texture = ExtResource("2_dufmy")
+hframes = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer"]
+offset_top = 152.0
+offset_right = 480.0
+offset_bottom = 212.0
+theme = ExtResource("1_f0e1a")
+theme_override_font_sizes/font_size = 32
+text = "Orbit Nonsense"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("3_pfuv6")
+original_text = "Orbit Nonsense"
+change_speed = 1.0
+flash_original_text_probability = 0.25
+dont_crypt_at_start = true
+
+[node name="SubtitleLabel" type="Label" parent="CanvasLayer"]
+offset_top = 198.0
+offset_right = 480.0
+offset_bottom = 238.0
+theme = ExtResource("1_f0e1a")
+theme_override_colors/font_color = Color(1, 1, 1, 0.533333)
+theme_override_font_sizes/font_size = 16
+text = "by Björn Bosse"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="StartGameButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = 40.0
+offset_right = 106.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_f0e1a")
+theme_override_font_sizes/font_size = 24
+text = "START"
+script = ExtResource("1_deky7")
+scene = 1
+
+[connection signal="pressed" from="CanvasLayer/StartGameButton" to="CanvasLayer/StartGameButton" method="switch_scene"]

@@ -11,13 +11,13 @@ var wave_cooldown_timer = wave_cooldown
 var game_over = false
 
 @onready var earth: Earth = $Earth
-@onready var game_over_label: Label = $UICanvas/GameOverLabel
+@onready var game_over_controls: Node2D = $UICanvas/GameOver
 @onready var alien_msg_label: CrypticText = $"alien-help-msg/Label"
 
 func _ready():
 	earth.earth_exploded.connect(on_earth_exploded)
 	
-	game_over_label.visible = false
+	game_over_controls.visible = false
 
 func _process(delta):
 	if game_over:
@@ -73,7 +73,7 @@ func is_wave_running():
 
 func on_earth_exploded():
 	game_over = true
-	game_over_label.visible = true
+	game_over_controls.visible = true
 	
 	# alien is happy
 	alien_msg_label.original_text = "FREEDOM"

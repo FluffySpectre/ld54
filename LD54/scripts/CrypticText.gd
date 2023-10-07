@@ -3,6 +3,7 @@ class_name CrypticText extends Label
 @export var original_text = ""
 @export var change_speed = 0.25
 @export var flash_original_text_probability = 0.01
+@export var dont_crypt_at_start = false
 
 var cryptic_characters = "Σ#Æ&λ?Ø$∞¢@%"
 var cryptic_text = ""
@@ -11,8 +12,12 @@ var temp_change_speed = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	calculate_cryptic_text()
-	text = cryptic_text
+	if not dont_crypt_at_start:
+		calculate_cryptic_text()
+		text = cryptic_text
+	else:
+		cryptic_text = original_text
+		text = cryptic_text
 	temp_change_speed = change_speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
