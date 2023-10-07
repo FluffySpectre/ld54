@@ -18,6 +18,7 @@ func _ready():
 	earth.earth_exploded.connect(on_earth_exploded)
 	
 	game_over_controls.modulate.a = 0.0
+	game_over_controls.visible = false
 
 func _process(delta):
 	if game_over:
@@ -80,5 +81,6 @@ func on_earth_exploded():
 	
 	await get_tree().create_timer(3.0).timeout
 
+	game_over_controls.visible = true
 	game_over_controls.fade_in()
 
