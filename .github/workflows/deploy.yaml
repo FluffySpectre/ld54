@@ -44,12 +44,3 @@ jobs:
           itchUsername: ${{ secrets.ITCH_USER }}
           itchGameId: orbit-nonsense
           buildChannel: windows
-
-      - name: Upload windows build to sennio.de
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: "./LD54/bin/win/"
-          server-dir: "/games/ld54/win/"
