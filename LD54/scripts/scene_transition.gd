@@ -32,6 +32,6 @@ func is_in_in_transition():
 func is_not_in_transition():
 	return transition_state == TransitionState.None
 
-func on_animation_finished(name: String):
+func on_animation_finished(_name: String):
 	transition_state = TransitionState.None
 	transition_finished.emit()
