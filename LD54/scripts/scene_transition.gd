@@ -16,11 +16,11 @@ func _ready():
 	animation_player.animation_finished.connect(on_animation_finished)
 
 func transition_out():
-	animation_player.play("scene_transition_from_right")
+	animation_player.play("scene_transition_out")
 	transition_state = TransitionState.Out
 	
 func transition_in():
-	animation_player.play("scene_transition_to_left")
+	animation_player.play("scene_transition_in")
 	transition_state = TransitionState.In
 
 func is_in_out_transition():
