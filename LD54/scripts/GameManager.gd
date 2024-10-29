@@ -83,4 +83,3 @@ func on_earth_exploded():
 
 	game_over_controls.visible = true
 	game_over_controls.fade_in()
-

@@ -64,4 +64,3 @@ func do_scene_switch():
 
 func get_scene_root() -> Node:
 	return scene_container.get_child(0)
-
